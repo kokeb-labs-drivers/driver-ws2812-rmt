@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="939" height="441" viewBox="0 0 939 441" role="img" aria-labelledby="chip-pinout-title chip-pinout-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-pinout-title">WS2812B pinout, 5050 (WS2812B)</title>
+<desc id="chip-pinout-desc">Pinout of the WS2812B in 5050 (WS2812B), top view: 4 pins, each with its name, its electrical type as a colour and the driver hook that uses it.</desc>
+<rect x="0.5" y="0.5" width="938" height="440" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">WS2812B pinout, 5050 (WS2812B)</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Top view, pin 1 marked. Colour is the pin's electrical type; the mono text outside is the port hook the driver uses for</text>
+<text x="32" y="125.5" font-size="15" fill="#9AA6B5">it. Datasheet: PIN Configuration, p. 2.</text>
+<rect x="32" y="141.6" width="875" height="1" fill="#252F3C"/>
+<rect x="339.5" y="179.6" width="260" height="200" rx="8" fill="#18202B" stroke="#D2DAE4" stroke-width="2"/>
+<path d="M453.5 179.6 A16 16 0 0 0 485.5 179.6" fill="#151C26" stroke="#D2DAE4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="359.5" cy="199.6" r="6" fill="#D2DAE4"/>
+<rect x="309.5" y="252.6" width="30" height="20" rx="3" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="309.5" y="286.6" width="30" height="20" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="599.5" y="252.6" width="30" height="20" rx="3" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="599.5" y="286.6" width="30" height="20" rx="3" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="469.5" y="269.6" font-size="20" font-weight="700" text-anchor="middle" fill="#E8EDF3">WS2812B</text>
+<text x="469.5" y="293.6" font-size="13" text-anchor="middle" fill="#9AA6B5">5050 (WS2812B), top view</text>
+<text x="324.5" y="266.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#FECDD3">1</text>
+<text x="299.5" y="267.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VDD</text>
+<text x="245.9" y="266.9" font-size="12" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#9AA6B5">GpioSet(CtrlPin::Power)</text>
+<text x="324.5" y="300.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#BBF7D0">2</text>
+<text x="299.5" y="301.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">DOUT</text>
+<text x="614.5" y="266.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#A7F3E6">4</text>
+<text x="639.5" y="267.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">DIN</text>
+<text x="693.1" y="266.9" font-size="12" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#9AA6B5">Transmit()</text>
+<text x="614.5" y="300.7" font-size="11.5" font-weight="700" text-anchor="middle" fill="#E2E8F0">3</text>
+<text x="639.5" y="301.6" font-size="14" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">VSS</text>
+<rect x="32" y="394.9" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="54" y="406.6" font-size="12.5" fill="#9AA6B5">power</text>
+<rect x="117.6" y="394.9" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="139.6" y="406.6" font-size="12.5" fill="#9AA6B5">ground</text>
+<rect x="208.5" y="394.9" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="230.5" y="406.6" font-size="12.5" fill="#9AA6B5">digital in</text>
+<rect x="306.9" y="394.9" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="328.9" y="406.6" font-size="12.5" fill="#9AA6B5">digital out</text>
+</svg>

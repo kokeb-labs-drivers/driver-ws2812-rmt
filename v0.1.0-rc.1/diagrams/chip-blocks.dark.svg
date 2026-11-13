@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="543" viewBox="0 0 1200 543" role="img" aria-labelledby="chip-blocks-title chip-blocks-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-blocks-title">Inside the WS2812B</title>
+<desc id="chip-blocks-desc">Block diagram of the WS2812B: its function blocks, how they connect and which package pins reach each block.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="542" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">Inside the WS2812B</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Function blocks and their links, from the datasheet's block diagram (Data Transmission Method, p. 4). Pins on the edge carry their package number.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#252F3C"/>
+<rect x="112" y="137.8" width="968" height="344" rx="14" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>
+<path d="M119 257.8 L152 257.8" fill="none" stroke="#2BB3A3" stroke-width="1.8"/>
+<path d="M119 393.8 L152 393.8" fill="none" stroke="#FB7185" stroke-width="1.8"/>
+<path d="M119 417.8 L152 417.8" fill="none" stroke="#94A3B8" stroke-width="1.8"/>
+<path d="M1073 401.8 L696 401.8" fill="none" stroke="#4ADE80" stroke-width="1.8"/>
+<path d="M356 257.8 L492 257.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M700 257.8 L836 257.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M592 317.8 L592 357.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M356 401.8 L472 401.8 Q480 401.8 480 393.8 L480 295.8 Q480 289.8 486 289.8 L492 289.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="152" y="201.8" width="200" height="112" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="152" y="209.8" width="4" height="96" rx="2" fill="#60A5FA"/>
+<rect x="496" y="201.8" width="200" height="112" rx="10" fill="#2A2113" stroke="#F4B942" stroke-width="1.4"/>
+<rect x="496" y="209.8" width="4" height="96" rx="2" fill="#F4B942"/>
+<rect x="840" y="201.8" width="200" height="112" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="840" y="209.8" width="4" height="96" rx="2" fill="#2BB3A3"/>
+<rect x="496" y="361.8" width="200" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="496" y="369.8" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="152" y="361.8" width="200" height="88" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="152" y="369.8" width="4" height="72" rx="2" fill="#94A3B8"/>
+<rect x="105" y="250.8" width="14" height="14" rx="3" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="105" y="386.8" width="14" height="14" rx="3" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="105" y="410.8" width="14" height="14" rx="3" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="1073" y="394.8" width="14" height="14" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="128" y="162.8" font-size="13" font-weight="700" fill="#E2E8F0">WS2812B</text>
+<text x="204.7" y="162.8" font-size="12" fill="#E2E8F0">5050 (WS2812B)</text>
+<text x="172" y="228.6" font-size="15" font-weight="700" fill="#BFDBFE">Input buffer</text>
+<text x="172" y="253.4" font-size="13" fill="#D2DAE4">hysteresis, VIH 2.7 V or</text>
+<text x="172" y="272.2" font-size="13" fill="#D2DAE4">0.63 x VDD</text>
+<text x="516" y="228.6" font-size="15" font-weight="700" fill="#F8D27A">Shift register and</text>
+<text x="516" y="248.1" font-size="15" font-weight="700" fill="#F8D27A">latch</text>
+<text x="516" y="272.9" font-size="13" fill="#D2DAE4">24 bit, GRB, high bit first</text>
+<text x="860" y="228.6" font-size="15" font-weight="700" fill="#A7F3E6">PWM</text>
+<text x="860" y="248.1" font-size="15" font-weight="700" fill="#A7F3E6">constant-current</text>
+<text x="860" y="267.6" font-size="15" font-weight="700" fill="#A7F3E6">drivers</text>
+<text x="860" y="292.4" font-size="13" fill="#D2DAE4">R, G, B, 256 levels</text>
+<text x="516" y="388.6" font-size="15" font-weight="700" fill="#FDE68A">Reshaping amplifier</text>
+<text x="516" y="413.4" font-size="13" fill="#D2DAE4">forwards the rest of the</text>
+<text x="516" y="432.3" font-size="13" fill="#D2DAE4">frame</text>
+<text x="172" y="388.6" font-size="15" font-weight="700" fill="#E2E8F0">Power-on and</text>
+<text x="172" y="408.1" font-size="15" font-weight="700" fill="#E2E8F0">power-lost reset</text>
+<text x="172" y="432.9" font-size="13" fill="#D2DAE4">built in</text>
+<text x="98" y="262.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">DIN  4</text>
+<text x="98" y="398.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VDD  1</text>
+<text x="98" y="422.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VSS  3</text>
+<text x="1094" y="406.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">DOUT  2</text>
+<circle cx="152" cy="257.8" r="3" fill="#2BB3A3"/>
+<circle cx="152" cy="393.8" r="3" fill="#FB7185"/>
+<circle cx="152" cy="417.8" r="3" fill="#94A3B8"/>
+<circle cx="696" cy="401.8" r="3" fill="#4ADE80"/>
+<rect x="406.9" y="247.8" width="34.2" height="20" rx="10" fill="#0E131A"/>
+<text x="424" y="262.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">bits</text>
+<rect x="718.5" y="247.8" width="99" height="20" rx="10" fill="#0E131A"/>
+<text x="768" y="262.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">latched colour</text>
+<rect x="552.9" y="327.8" width="78.2" height="20" rx="10" fill="#0E131A"/>
+<text x="592" y="342.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">later pixels</text>
+<rect x="396.5" y="391.8" width="43" height="20" rx="10" fill="#0E131A"/>
+<text x="418" y="406.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">reset</text>
+<rect x="32" y="497.2" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="54" y="508.8" font-size="12.5" fill="#9AA6B5">power</text>
+<rect x="117.6" y="497.2" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="139.6" y="508.8" font-size="12.5" fill="#9AA6B5">ground</text>
+<rect x="208.5" y="497.2" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="230.5" y="508.8" font-size="12.5" fill="#9AA6B5">digital in</text>
+<rect x="306.9" y="497.2" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="328.9" y="508.8" font-size="12.5" fill="#9AA6B5">digital out</text>
+<path d="M414.3 503.4L444.3 503.4" fill="none" stroke="#6C7889" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="458.3" y="508.8" font-size="12.5" fill="#9AA6B5">signal or data between blocks</text>
+</svg>

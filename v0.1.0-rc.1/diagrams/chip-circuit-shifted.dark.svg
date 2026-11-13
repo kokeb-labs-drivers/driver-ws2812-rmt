@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="888" height="780" viewBox="0 0 888 780" role="img" aria-labelledby="chip-circuit-shifted-title chip-circuit-shifted-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-circuit-shifted-title">WS2812B: Level shifter for a 3.3 V MCU, supply always on</title>
+<desc id="chip-circuit-shifted-desc">Schematic of the WS2812B level shifter for a 3.3 v mcu, supply always on: the chip with U2 MCU, U4 74HCT buffer, R1 resistor 330 Ω, C1 capacitor 100 nF, R2 resistor 10 kΩ; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit().</desc>
+<rect x="0.5" y="0.5" width="887" height="779" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">WS2812B: Level shifter for a 3.3 V MCU, supply always on</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">The same data path when the strip supply is not switched: the 3.3 V data pin of the MCU through a</text>
+<text x="32" y="125.5" font-size="15" fill="#9AA6B5">74HCT-class buffer powered from the same 5 V as the pixel, so the pixel sees a full 5 V high level, then the</text>
+<text x="32" y="147.3" font-size="15" fill="#9AA6B5">330 ohm series resistor next to the first pixel. A 10 kohm pull-down on the buffer input holds the line low</text>
+<text x="32" y="169.1" font-size="15" fill="#9AA6B5">while the MCU pin floats (from reset until the RMT channel starts), so the always-on pixels see no noise as</text>
+<text x="32" y="190.8" font-size="15" fill="#9AA6B5">data. Above each MCU wire: the port hook that drives it. Datasheet: Electrical Characteristics, p. 2.</text>
+<rect x="32" y="206.8" width="824" height="1" fill="#252F3C"/>
+<path d="M616 472.8 L616 480.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M616 480.8 L632 480.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M328 272.8 L328 360.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M328 296.8 L376 296.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M488 456.8 L528 456.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M288 656.8 L288 672.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M616 504.8 L632 504.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M616 504.8 L616 512.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M208 304.8 L632 304.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M208 304.8 L208 608.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M208 608.8 L288 608.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M632 304.8 L632 432.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M576 456.8 L592 456.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M592 440.8 L632 440.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M592 440.8 L592 456.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<path d="M632 440.8 L632 456.8" fill="none" stroke="#D2DAE4" stroke-width="1.5"/>
+<rect x="288" y="384.8" width="176" height="104" rx="4" fill="#151C26" stroke="#F4B942" stroke-width="1.8"/>
+<path d="M464 416.8 L488 416.8" fill="none" stroke="#4ADE80" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M464 456.8 L488 456.8" fill="none" stroke="#2BB3A3" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M328 384.8 L328 360.8" fill="none" stroke="#FB7185" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M376 488.8 L376 512.8" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<rect x="32" y="352.8" width="152" height="88" rx="4" fill="#18202B" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M184 408.8 L208 408.8" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M160 440.8 L160 464.8" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M328 272.8 L328 261.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M319 261.8 L337 261.8" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M376 296.8 L376 317.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M376 324.3 L376 344.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M366 317.3 L386 317.3" fill="none" stroke="#E8EDF3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M366 324.3 L386 324.3" fill="none" stroke="#E8EDF3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M376 344.8 L376 352.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M368 352.8 L384 352.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M371 356.3 L381 356.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M374 359.8 L378 359.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M376 512.8 L376 520.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M368 520.8 L384 520.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M371 524.3 L381 524.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M374 527.8 L378 527.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M160 464.8 L160 472.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M152 472.8 L168 472.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M155 476.3 L165 476.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M158 479.8 L162 479.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M576 456.8 L563 456.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M541 456.8 L528 456.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M563 461.8 L541 461.8 L541 451.8 L563 451.8 Z" fill="#151C26" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="656" y="384.8" width="184" height="144" rx="4" fill="#18202B" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M656 432.8 L632 432.8" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M656 456.8 L632 456.8" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M656 480.8 L632 480.8" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M656 504.8 L632 504.8" fill="none" stroke="#94A3B8" stroke-width="2.2" stroke-linecap="butt" stroke-linejoin="round"/>
+<path d="M288 608.8 L288 621.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M288 643.8 L288 656.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M283 621.8 L283 643.8 L293 643.8 L293 621.8 Z" fill="#151C26" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M616 472.8 L616 461.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M607 461.8 L625 461.8" fill="none" stroke="#FB7185" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M616 512.8 L616 520.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M608 520.8 L624 520.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M611 524.3 L621 524.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M614 527.8 L618 527.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M288 672.8 L288 680.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M280 680.8 L296 680.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M283 684.3 L293 684.3" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M286 687.8 L290 687.8" fill="none" stroke="#E8EDF3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M484 420.8 L492 412.8" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M484 412.8 L492 420.8" fill="none" stroke="#9AA6B5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="458" y="421.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">DOUT</text>
+<text x="468" y="412.8" font-size="11" fill="#9AA6B5">2</text>
+<text x="458" y="461.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">DIN</text>
+<text x="468" y="452.8" font-size="11" fill="#9AA6B5">4</text>
+<text x="328" y="400.8" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VDD</text>
+<text x="332" y="378.8" font-size="11" fill="#9AA6B5">1</text>
+<text x="376" y="481.8" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">VSS</text>
+<text x="380" y="503.6" font-size="11" fill="#9AA6B5">3</text>
+<text x="376" y="433.8" font-size="15" font-weight="700" text-anchor="middle" fill="#F8D27A">WS2812B</text>
+<text x="376" y="451.8" font-size="12" text-anchor="middle" fill="#9AA6B5">U1</text>
+<text x="178" y="413.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">RMT data</text>
+<text x="160" y="433.8" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#E8EDF3">GND</text>
+<text x="44" y="374.8" font-size="15" font-weight="700" fill="#E8EDF3">MCU</text>
+<text x="44" y="392.8" font-size="12" fill="#9AA6B5">U2</text>
+<text x="328" y="255.8" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">+5V</text>
+<text x="391" y="317.8" font-size="12" font-weight="700" fill="#E8EDF3">C1</text>
+<text x="391" y="332.2" font-size="12" fill="#9AA6B5">100 nF</text>
+<text x="552" y="446.8" font-size="12" font-weight="600" text-anchor="middle" fill="#D2DAE4">R1  330 Ω  *</text>
+<text x="662" y="437.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">A</text>
+<text x="662" y="461.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">Y</text>
+<text x="662" y="485.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">VCC</text>
+<text x="662" y="509.3" font-size="12.5" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">GND</text>
+<text x="668" y="406.8" font-size="15" font-weight="700" fill="#E8EDF3">74HCT buffer</text>
+<text x="668" y="424.8" font-size="12" fill="#9AA6B5">U4</text>
+<text x="298" y="629.8" font-size="12" font-weight="700" fill="#E8EDF3">R2</text>
+<text x="298" y="644.2" font-size="12" fill="#9AA6B5">10 kΩ *</text>
+<text x="616" y="455.8" font-size="12" font-weight="700" text-anchor="middle" fill="#FECDD3">+5V</text>
+<circle cx="328" cy="296.8" r="3.2" fill="#D2DAE4"/>
+<circle cx="208" cy="408.8" r="3.2" fill="#D2DAE4"/>
+<text x="32" y="709.8" font-size="12.5" fill="#9AA6B5">* Not confirmed in the datasheet: U4: general practice: the data sheet draws no level shifter; the HCT input accepts a 3.3 V output;</text>
+<text x="32" y="727.8" font-size="12.5" fill="#9AA6B5">R1 330 Ω: series resistor next to the first pixel: practice, 300 to 500 ohm; R2 10 kΩ: pull-down on the data line: practice; the MCU pin</text>
+<text x="32" y="745.8" font-size="12.5" fill="#9AA6B5">floats from reset until the RMT starts.</text>
+</svg>
