@@ -1,0 +1,57 @@
+# Kconfig for the WS2812_RMT driver. The root CMakeLists.txt registers it with ESP-IDF
+# (idf_component_register(... KCONFIG _config/Kconfig)). The values reach the code only
+# through inc/ws2812_rmt_kconfig.hpp. The strip's pin, length and tick rate belong to the application
+# and its port, not to the driver.
+menuconfig WS2812_RMT
+    bool "WS2812_RMT addressable LED driver"
+    default y
+    help
+      Defaults for ws2812_rmt::KconfigDefaults(). Outside ESP-IDF they come from Config::Default().
+
+if WS2812_RMT
+
+choice WS2812_RMT_VARIANT
+    prompt "Timing generation of the LEDs"
+    default WS2812_RMT_VARIANT_WS2812B_V5
+    help
+      No single waveform serves every part. Pick the window set of your LEDs (docs/timing.md).
+
+config WS2812_RMT_VARIANT_WS2812
+    bool "WS2812 (6 pin)"
+config WS2812_RMT_VARIANT_WS2812B_PRE_V5
+    bool "WS2812B and WS2812S, 2013 to 2017 datasheets"
+config WS2812_RMT_VARIANT_WS2812B_V5
+    bool "WS2812B V5 and V6, WS2812B-2020, WS2812C-2020"
+config WS2812_RMT_VARIANT_WS2812C
+    bool "WS2812C (5050) and WS2812-2020"
+config WS2812_RMT_VARIANT_WS2812D
+    bool "WS2812D-F8"
+config WS2812_RMT_VARIANT_SK6812
+    bool "SK6812 (RGB)"
+config WS2812_RMT_VARIANT_SK6812_RGBW
+    bool "SK6812RGBW"
+config WS2812_RMT_VARIANT_SK6812_MINI
+    bool "SK6812MINI and MINI-E"
+
+endchoice
+
+config WS2812_RMT_DEFAULT_BRIGHTNESS
+    int "Brightness at start (0 to 255)"
+    range 0 255
+    default 255
+
+config WS2812_RMT_RESET_US
+    int "Reset low time in microseconds (0: datasheet minimum plus 20 us)"
+    range 0 10000
+    default 0
+    help
+      0 sends the minimum of the selected variant plus 20 us. A value at or below that variant's reset
+      minimum (for example 1 to 280 for WS2812B V5 and later, 1 to 50 for the 6-pin WS2812) passes this
+      range but is refused by EnsureInitialized() with InvalidArgument.
+
+config WS2812_RMT_POWER_ON_SETTLE_US
+    int "Wait after PowerOn() in microseconds"
+    range 0 1000000
+    default 1000
+
+endif

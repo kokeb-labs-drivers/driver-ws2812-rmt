@@ -1,0 +1,30 @@
+{
+  "name": "ws2812_rmt",
+  "cls": "Ws2812Rmt",
+  "calls": [
+    "EnsureInitialized",
+    "SetPixel",
+    "GetPixel",
+    "Show",
+    "TraceWire",
+    "PowerOn",
+    "PowerOff",
+    "CurrentWaveform",
+    "FrameTimeUs"
+  ],
+  "sources": [
+    "inc/ws2812_rmt.hpp:public calls",
+    "inc/ws2812_rmt_gpio_interface.hpp:GpioInterface"
+  ],
+  "bus": "GPIO",
+  "base": "GpioInterface",
+  "hooks": [
+    "EnsureInitialized",
+    "ResolutionHz",
+    "Transmit",
+    "DelayUs"
+  ],
+  "flow": "whole frames of pixel bytes",
+  "wire": "timed single-wire pulses",
+  "chip_line": "the pixel chain, on one data wire"
+}

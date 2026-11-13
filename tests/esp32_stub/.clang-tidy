@@ -1,0 +1,12 @@
+---
+# The stand-ins of the ESP-IDF headers copy the names, signatures and types of the vendor's C API (esp_err_t,
+# rmt_transmit, vTaskDelay, ...) because the example port includes the real headers on a target and these on the
+# host. The vendor's naming is part of that contract, not a style choice; the checks below would only rename it.
+#   readability-identifier-naming   the vendor's names
+#   performance-enum-size           the vendor's int-sized enumerations (gpio_num_t, esp_log_level_t, ...)
+#   cppcoreguidelines-use-enum-class the vendor's C enumerations are unscoped (ESP_OK, GPIO_MODE_OUTPUT, ...)
+InheritParentConfig: true
+Checks: >-
+  -readability-identifier-naming,
+  -performance-enum-size,
+  -cppcoreguidelines-use-enum-class

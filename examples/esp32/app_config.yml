@@ -1,0 +1,61 @@
+---
+# WS2812_RMT ESP32 examples: the app matrix read by the build scripts, the CI and the docs Examples page.
+version: "1.0"
+
+metadata:
+  project: "ESP32 WS2812_RMT Driver Examples"
+  default_app: "ws2812_rmt_basic_example"
+  target: "esp32c6"
+  idf_versions: ["release/v5.5"]
+  build_types: [["Debug", "Release"]]
+
+apps:
+  ws2812_rmt_basic_example:
+    description: "Start an 8 pixel strip from the menuconfig values, show red, then a turning rainbow"
+    source_file: "ws2812_rmt_basic_example.cpp"
+    category: "example"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: true
+    hardware_required: true
+    features:
+      - "ESP-IDF RMT port: bytes encoder, delay-based reset, optional supply pin"
+      - "Config from Kconfig (menuconfig) through ws2812_rmt_kconfig.hpp"
+      - "Every Result checked and logged by name"
+
+  ws2812_rmt_custom_example:
+    description: "A part with its own timing: Variant::Custom, a declared window set and an RGBW order"
+    source_file: "ws2812_rmt_custom_example.cpp"
+    category: "example"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: true
+    featured: false
+    hardware_required: true
+    features:
+      - "Custom timing windows resolved at the RMT tick rate"
+      - "RGBW colour order and ExtractWhite()"
+
+build_config:
+  build_types:
+    Debug:
+      description: "Debug build"
+      cmake_build_type: "Debug"
+      optimization: "-O0"
+      debug_level: "-g3"
+      defines: ["DEBUG"]
+    Release:
+      description: "Release build"
+      cmake_build_type: "Release"
+      optimization: "-O2"
+      debug_level: "-g0"
+      defines: ["NDEBUG"]
+  build_directory_pattern: "build-app-{app_type}-type-{build_type}-target-{target}-idf-{idf_version}"
+  project_name_pattern: "esp32_ws2812_rmt_{app_type}_app"
+
+ci_config:
+  timeout_minutes: 30
+  fail_fast: false
+  exclude_combinations: []
+  special_apps: []

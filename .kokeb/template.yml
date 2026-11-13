@@ -1,0 +1,19 @@
+---
+# How this repository was made from kokeb-labs/driver-template. The template's drift check
+# (tools/scaffold.py --check-drift, CI: kokeb-labs/ci-tools ru-template-drift) scaffolds the template again
+# with these arguments and compares the files it manages. List a file under `local` only when it differs on
+# purpose, with the reason.
+template: unknown
+kind: "driver"
+name: "ws2812_rmt"
+bus: "none"
+namespace: "ws2812_rmt"
+description: "C++20 driver for single-wire addressable RGB and RGBW LEDs (WS2812, SK6812 and compatible) over a timed bit stream"
+include_root: null
+org: "kokeb-labs-drivers"
+repo: "driver-ws2812-rmt"
+author: "The driver-ws2812-rmt authors"
+license: "MIT"
+datasheet: "https://cdn.eicom.ru/media/PDF/WS2812B-V5.pdf"
+platforms: [host, esp32]
+local: []

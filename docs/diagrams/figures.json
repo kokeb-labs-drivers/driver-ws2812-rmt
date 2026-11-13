@@ -1,0 +1,79 @@
+{
+  "chip-blocks": {
+    "title": "Inside the WS2812B",
+    "alt": "Block diagram of the WS2812B: its function blocks, how they connect and which package pins reach each block.",
+    "description": "The WS2812B's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-circuit-shifted": {
+    "title": "WS2812B: Level shifter for a 3.3 V MCU, supply always on",
+    "alt": "Schematic of the WS2812B level shifter for a 3.3 v mcu, supply always on: the chip with U2 MCU, U4 74HCT buffer, R1 resistor 330 Ω, C1 capacitor 100 nF, R2 resistor 10 kΩ; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit().",
+    "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
+    "profile": "detail",
+    "width": 888,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-circuit-typical": {
+    "title": "WS2812B: Typical application",
+    "alt": "Schematic of the WS2812B typical application: the chip with U2 MCU, U3 Load switch, U4 74HCT buffer, J1 5 V supply, R1 resistor 330 Ω, C1 capacitor 100 nF, R2 resistor 10 kΩ; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit().",
+    "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
+    "profile": "detail",
+    "width": 984,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-outline": {
+    "title": "WS2812B package, 5050 (WS2812B)",
+    "alt": "Outline of the WS2812B in 5050 (WS2812B) drawn to scale from above: body 5.4 x 5.0 x 1.57 mm, 4 pins.",
+    "description": "The WS2812B package seen from the top and, when the height is known, from the side, drawn to scale: 5.4 x 5.0 x 1.57 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.",
+    "profile": "detail",
+    "width": 866,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-pinout": {
+    "title": "WS2812B pinout, 5050 (WS2812B)",
+    "alt": "Pinout of the WS2812B in 5050 (WS2812B), top view: 4 pins, each with its name, its electrical type as a colour and the driver hook that uses it.",
+    "description": "The WS2812B seen from the top, in its 5050 (WS2812B) package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.",
+    "profile": "detail",
+    "width": 939,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "driver-layers": {
+    "title": "The layers, one of them yours",
+    "alt": "Layer diagram: your application calls the Ws2812Rmt core, which sends whole frames of pixel bytes through the GPIO port contract to the port class you write, which drives the chip; the core and the contract are the same on every MCU.",
+    "description": "Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/diagrams/figures/driver-layers.py",
+    "sources": [
+      "inc/ws2812_rmt.hpp:public calls",
+      "inc/ws2812_rmt_gpio_interface.hpp:GpioInterface"
+    ]
+  }
+}

@@ -1,0 +1,423 @@
+---
+# The vendor documents this driver was written against (handbook ADR-0019), and where the driver relies on them.
+# Never commit a PDF: `sha256` identifies the exact file that was used, so a reader can confirm they hold the same
+# revision.
+#
+# WHERE THE FILES COME FROM: neither vendor publishes a direct PDF link (the manufacturer's product page has
+# "Download Datasheet" links that point nowhere), so every `url` below is a third-party host that serves the vendor
+# document. Each file was kept as downloaded and identified by its sha256; none is committed. `pdf` is null for
+# every document for that reason, and readers download from `url`. `page_offset` is 0: the printed page numbers
+# equal the PDF page numbers of every document used.
+#
+# `date` is the month of the revision named: the last line of the document's own history table where it has one,
+# the cover date where it has one, otherwise the month the PDF was created (an undated revision says so).
+#
+# One more copy is kept only as a cross-check and is not listed, because the host it came from was not recorded: a
+# second V5.0 copy (sha256 ba86b99a2ec1c2064661da51ed733bba4beaf2264d2227a212c0d04d9e558abc, same windows and VIH as
+# the eicom copy). The Hestore copy (`b-v6-h`) is revision V6.0 (2021-12) of the sheet for part WS2812B-V5/W, NOT the
+# 2025 "WS2812B-V6" listed below; it prints an input high level of 0.63 x VDD and no cycle row. The 1313 package sheet
+# (`b-1313`) prints 0.5 x VDD and a 1250 ns cycle; its T1 rows exist only in the rendered page and equal V5. Both
+# have `url: null` (no mirror recorded).
+#
+# The Watterott copy (`b-v5-w`) is revision V6.1 (2022-09): its own modify record runs V5.0, V5.1 (2020-07), V6.0
+# (2021-12, part number changed to WS2812B-V5/W) and V6.1 (2022-09). It prints 0.63 x VDD; only the eicom copy (V5.0)
+# prints 2.7 V. The driver's V5 profile takes the strictest of these (`MinLogicHighMv`).
+#
+# NOT OBTAINED: WS2812E (no datasheet on any host reached; the driver does not name the part), WS2812D-F5 and the
+# vendor's current WS2812B-V7 sheet. See docs/timing.md, "What is not covered".
+#
+# The README card, docs/datasheet.md and the "Datasheet" box on each page are generated from this file by
+# tools/docs/generators/datasheet.py (`kokeb-docs gen`).
+documents:
+  - id: ws2812
+    vendor: Worldsemi
+    title: "WS2812 (6 pin)"
+    kind: Datasheet
+    number: WS2812
+    revision: "undated"
+    date: 2012-10
+    url: https://cdn.sparkfun.com/datasheets/Components/LED/WS2812.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "66279391569b79a0958c0ef94eb746a3d9cc02f89d2f04279d8fc59fa366b3bd"
+  - id: ws2812s
+    vendor: Worldsemi
+    title: "WS2812S (6 pin)"
+    kind: Datasheet
+    number: WS2812S
+    revision: "undated"
+    date: 2013-12
+    url: https://static.chipdip.ru/lib/011/DOC013011924.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "fcdd5f5dd7fb80779ba05b2787f9c89a62b6bc6737024283c40bc0155ef38ea8"
+  - id: b-af
+    vendor: Worldsemi
+    title: "WS2812B"
+    kind: Datasheet
+    number: WS2812B
+    revision: "undated"
+    date: 2013-05
+    url: https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "670517e400d01f76e91187e173c9bb105e5470741604f81243364c5f13d37448"
+  - id: b-cn
+    vendor: Worldsemi
+    title: "WS2812B (Chinese-language edition)"
+    kind: Datasheet
+    number: WS2812B
+    revision: "undated"
+    date: 2013-12
+    url: https://atta.szlcsc.com/upload/public/pdf/source/20170703/1499049112282.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "9aca0cff9aeca368ffcbe98ea9359b2815d921c0b9e4942fa687ff54a2ec1e7b"
+  - id: b-mar17
+    vendor: Worldsemi
+    title: "WS2812B"
+    kind: Datasheet
+    number: WS2812B
+    revision: "Mar-2017"
+    date: 2017-03
+    url: https://www.triopak.fi/files/product/Worldsemi/WS2812B.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "f1f7c1d47cb3240f9e7d7a49ad669e5db086d3f7796c3e678a9b3a2a8500d8e3"
+  - id: b-v5
+    vendor: Worldsemi
+    title: "WS2812B Ver. No. V5"
+    kind: Datasheet
+    number: WS2812B-V5
+    revision: "V5.0"
+    date: 2019-03
+    url: https://cdn.eicom.ru/media/PDF/WS2812B-V5.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "2b045ec0824c80c5955eeccc347ba926bfdca9cb5e0242b15b194e59a4b7fa34"
+  - id: b-v5-w
+    vendor: Worldsemi
+    title: "WS2812B Ver. No. V5 (Watterott copy, revision V6.1)"
+    kind: Datasheet
+    number: WS2812B-V5
+    revision: "V6.1"
+    date: 2022-09
+    url: https://learn.watterott.com/kb/ws281x/WS2812B-v5.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "29f93e58009c16d679cf33304a6a718d89746c7aa954c732ffd875de1e8331e3"
+  - id: b-v6-h
+    vendor: Worldsemi
+    title: "WS2812B-V5/W (Hestore copy, revision V6.0)"
+    kind: Datasheet
+    number: WS2812B-V5/W
+    revision: "V6.0"
+    date: 2021-12
+    url: null # the host this copy came from was not recorded
+    pdf: null
+    page_offset: 0
+    sha256: "413f8fbb3c0bdf462df6f98f105ad5dbca729d2bd6d9574fd1c1c0b6f1b97e6b"
+  - id: b-1313
+    vendor: Worldsemi
+    title: "WS2812B-1313-V6 (1313 package)"
+    kind: Datasheet
+    number: WS2812B-1313-V6
+    revision: "V1.0"
+    date: 2025-10
+    url: null # the host this copy came from was not recorded
+    pdf: null
+    page_offset: 0
+    sha256: "e8df15fa13eb6b0a5a17ab7618630294bea024ec6819929fd79540ab7488e723"
+  - id: b-v6
+    vendor: Worldsemi
+    title: "WS2812B-V6"
+    kind: Datasheet
+    number: WS2812B-V6
+    revision: "V1.1"
+    date: 2025-10
+    url: https://atta.szlcsc.com/upload/public/pdf/source/20251201/45CD695EA06F90F53A3AC4760AC4DC7D.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "f6ee89835465bc6eabd52c039017abde30e2e04a062e465c12d7ada4c7b30a65"
+  - id: b-2020
+    vendor: Worldsemi
+    title: "WS2812B-2020"
+    kind: Datasheet
+    number: WS2812B-2020
+    revision: "V1.2"
+    date: 2018-12
+    url: https://static.chipdip.ru/lib/471/DOC047471401.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "9da429dee9fcb0bf44415801625833072ad6798937c8e998983670f6ac4bbacf"
+  - id: c-a
+    vendor: Worldsemi
+    title: "WS2812C (5050, 5 mA)"
+    kind: Datasheet
+    number: WS2812C
+    revision: "V1.0"
+    date: 2017-05
+    url: https://static.chipdip.ru/lib/011/DOC013011928.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "eb6dbf72821fb414cfca32a148cde04cdc0bab21e0a9b5022e4828cab7d9ce9d"
+  - id: c-b
+    vendor: Worldsemi
+    title: "Document headed WS2812C, body text WS2812B"
+    kind: Datasheet
+    number: WS2812C
+    revision: "V1.4"
+    date: 2018-07
+    url: https://static.chipdip.ru/lib/622/DOC047622372.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "44bc9d41a94ab87758e7df777f8f9d805869e7426dcf6bf6b1481ab563fa7eae"
+  - id: c-2020
+    vendor: Worldsemi
+    title: "WS2812C-2020"
+    kind: Datasheet
+    number: WS2812C-2020
+    revision: "V1.0"
+    date: 2019-03
+    url: https://akizukidenshi.com/goodsaffix/ws2812c-2020.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "12d859b4fbc1eb199bb6fe7c13514bd1f2d97b909a1d8ccebe4e2218dc7ac48e"
+  - id: ws-2020
+    vendor: Worldsemi
+    title: "WS2812-2020"
+    kind: Datasheet
+    number: WS2812-2020
+    revision: "V1.0"
+    date: 2018-05
+    url: https://cdn.shopify.com/s/files/1/2386/9605/files/WS2812-2020_V1.0_EN.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "d496bba4bb8c3eb6dabbcc124490fd45a010958d1eaff5e8e128c978777f16ef"
+  - id: d-f8
+    vendor: Worldsemi
+    title: "WS2812D-F8 15 mA (8 mm round)"
+    kind: Datasheet
+    number: WS2812D-F8
+    revision: "V1.1"
+    date: 2018-04
+    url: https://static.chipdip.ru/lib/471/DOC047471333.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "dafbfcbd166d8716af651952d06c063c43e6cc8c00490f578ce368a44c6c19df"
+  - id: sk-01
+    vendor: Opsco
+    title: "SK6812 (RGB, 5050)"
+    kind: Datasheet
+    number: SK6812
+    revision: "Rev. 01"
+    date: 2015-05
+    url: https://cdn-shop.adafruit.com/product-files/1138/SK6812+LED+datasheet+.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "6ef959baa1ec3ab761bf8a64a5b4ab385419b1b3d3209053a88acc8ef21bd04a"
+  - id: skw-01
+    vendor: Opsco
+    title: "SK6812RGBW"
+    kind: Datasheet
+    number: SK6812RGBW
+    revision: "Rev. 01"
+    date: 2015-07
+    url: https://cdn-shop.adafruit.com/product-files/2757/p2757_SK6812RGBW_REV01.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "28d3467c603cb1e2869b76e94c141e520f78e846e80efa94d7175e20c0005ac0"
+  - id: skw-03
+    vendor: Opsco
+    title: "SK6812RGBX-XX (RGBW)"
+    kind: Datasheet
+    number: SK6812RGBX-XX
+    revision: "Rev. 03"
+    date: 2018-07
+    url: https://www.ledyilighting.com/wp-content/uploads/2022/02/SK6812-RGBW-LED-specification.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "3f21db0550ba376dd995e97be4b96e29ae7956393e187f6eb2d4022ba6c7d007"
+  - id: skw-07
+    vendor: Opsco
+    title: "SK6812RGBX-XX"
+    kind: Datasheet
+    number: SK6812RGBX-XX
+    revision: "Rev. 07"
+    date: 2019-01
+    url: https://ge.voron.ua/files/pdf/Addressed_LEDs/SK6812RGBW-BW/SK6812RGBX-XX_Datasheet.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "927da8f574b79f857447927945dd38f0412a18aab66b27584eba4bd3512ffdda"
+  - id: skm-e
+    vendor: Opsco
+    title: "SK6812MINI-E"
+    kind: Datasheet
+    number: SK6812MINI-E
+    revision: "Rev. 02"
+    date: 2019-01
+    url: https://cdn-shop.adafruit.com/product-files/4960/4960_SK6812MINI-E_REV02_EN.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "164f1e44bdfb408b07642bac9cb95ee43997fa9bdc3434d7815fb37f890a9472"
+  - id: skm
+    vendor: Opsco
+    # An RGBW part (CSPM1411RGBW-IC-6): Sk6812Mini takes only its timing windows, which agree with the MINI-E
+    # sheet; the four-channel part itself is driven as Sk6812Rgbw (whose windows meet this sheet) or Custom.
+    title: "SK6812MINIRGBX-XX (mini RGBW)"
+    kind: Datasheet
+    number: SK6812MINIRGBX-XX
+    revision: "Rev. 01, undated"
+    date: 2022-11
+    url: https://datasheet.sic-components.com/CSPM1411RGBW-IC-6.pdf
+    pdf: null
+    page_offset: 0
+    sha256: "b404954c31b01bf3ecbf952c2f181dfa68cfb24f84b78e884b16dc95ef2a2b45"
+
+# One row per thing the driver takes from a document: the datasheet's own section names and printed page
+# numbers, the driver API that implements it, and the docs pages that explain it (file names in docs/).
+topics:
+  - topic: "T0H, T0L, T1H, T1L windows: WS2812B V5, V6, 2020"
+    doc: b-v5
+    section: "Data Transfer Time"
+    page: 3
+    driver: "`Variant::Ws2812bV5`, `ProfileTiming()`, `ResolveWaveform()`"
+    docs: [timing, configuration]
+  - topic: "Same windows, V6 edition"
+    doc: b-v6
+    section: "Data Transfer Time"
+    page: 4
+    driver: "`Variant::Ws2812bV5`, `Timing::period_min_ns`"
+    docs: [timing]
+  - topic: "WS2812B 2013 windows"
+    doc: b-af
+    section: "Data transfer time"
+    page: 3
+    driver: "`Variant::Ws2812bPreV5`"
+    docs: [timing]
+  - topic: "WS2812B Mar-2017 windows"
+    doc: b-mar17
+    section: "Data Transfer Time"
+    page: 4
+    driver: "`Variant::Ws2812bPreV5`"
+    docs: [timing]
+  - topic: "WS2812 (6 pin) windows"
+    doc: ws2812
+    section: "Data transfer time"
+    page: 4
+    driver: "`Variant::Ws2812`"
+    docs: [timing]
+  - topic: "WS2812C windows"
+    doc: c-a
+    section: "Data Transfer Time"
+    page: 3
+    driver: "`Variant::Ws2812c`"
+    docs: [timing]
+  - topic: "WS2812D-F8 windows"
+    doc: d-f8
+    section: "Data Transfer Time"
+    page: 4
+    driver: "`Variant::Ws2812d`"
+    docs: [timing]
+  - topic: "SK6812 windows"
+    doc: sk-01
+    section: "Data transfer time"
+    page: 5
+    driver: "`Variant::Sk6812`"
+    docs: [timing]
+  - topic: "SK6812RGBW windows, low below 20 us, code period"
+    doc: skw-07
+    section: "12. The data transmission time"
+    page: 7
+    driver: "`Variant::Sk6812Rgbw`, `Waveform::max_gap_ticks`"
+    docs: [timing, porting]
+  - topic: "SK6812MINI windows"
+    doc: skm-e
+    section: "Data transmission time"
+    page: 7
+    driver: "`Variant::Sk6812Mini`"
+    docs: [timing]
+  - topic: "RES: the reset low time"
+    doc: b-v5
+    section: "Data Transfer Time (RES)"
+    page: 3
+    driver: "`Timing::reset_min_ns`, `Config::reset_us`, `kResetMarginUs`"
+    docs: [timing, configuration, troubleshooting]
+  - topic: "Reset low time of the SK6812"
+    doc: sk-01
+    section: "Data transfer time (Trst)"
+    page: 5
+    driver: "`Variant::Sk6812`"
+    docs: [timing]
+  - topic: "24 bit data, GRB, high bit first"
+    doc: b-v5
+    section: "Composition of 24bit Data"
+    page: 4
+    driver: "`EncodePixel()`, `EncodeFrame()`, `kOrderGrb`"
+    docs: [colour, api-guide]
+  - topic: "32 bit data and its order: GRBW"
+    doc: skw-07
+    section: "13. The data structure of 32bit"
+    page: 9
+    driver: "`kOrderGrbw`, `Config::order`"
+    docs: [colour, troubleshooting]
+  - topic: "32 bit data and its order: RGBW (revisions 01 and 03)"
+    doc: skw-03
+    section: "13. The data structure of 32bit"
+    page: 6
+    driver: "`kOrderRgbw`, `Config::order`"
+    docs: [colour, troubleshooting]
+  - topic: "Cascade and data transmission method"
+    doc: b-v5
+    section: "Data Transmission Method"
+    page: 4
+    driver: "`Ws2812Rmt::Show()`, `MaxPixelsAtRate()`"
+    docs: [api-guide, timing]
+  - topic: "Input levels VIH and VIL"
+    doc: b-v5
+    section: "Electrical Characteristics"
+    page: 2
+    driver: "`MinLogicHighMv()`"
+    docs: [hardware, troubleshooting]
+  - topic: "Input level 0.63 x VDD (later V5 family sheets)"
+    doc: b-v5-w
+    section: "Electrical Characteristics"
+    page: 3
+    driver: "`MinLogicHighMv()`"
+    docs: [hardware, troubleshooting]
+  - topic: "Input levels of the SK6812"
+    doc: skw-01
+    section: "Electrical Characteristics"
+    page: 4
+    driver: "`kSk6812MinHighMv`, `MinLogicHighMv()`"
+    docs: [hardware]
+  - topic: "Supply range and logical input voltage"
+    doc: b-v5
+    section: "Absolute Maximum Ratings"
+    page: 2
+    driver: "`MinLogicHighMv()`"
+    docs: [hardware]
+  - topic: "Propagation delay DIN to DOUT"
+    doc: b-v5
+    section: "Switching Characteristics"
+    page: 3
+    driver: "`FrameTimeNs()`"
+    docs: [timing, hardware]
+  - topic: "Pins and package: four pin 5050"
+    doc: b-v5
+    section: "PIN Configuration"
+    page: 2
+    driver: "`GpioInterface` (the data pin is the port's)"
+    docs: [hardware, quickstart]
+  - topic: "Pins and package: six pin 5050"
+    doc: ws2812
+    section: "PIN configuration"
+    page: 2
+    driver: "`GpioInterface` (the data pin is the port's)"
+    docs: [hardware]
+  - topic: "Typical application circuit"
+    doc: b-af
+    section: "Typical application circuit"
+    page: 5
+    driver: "`CtrlPin::Power`, `PowerOn()`, `PowerOff()`"
+    docs: [hardware, porting]
