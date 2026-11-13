@@ -1,0 +1,163 @@
+---
+# The chip's hardware in one file: package, pins, the driver hook of each pin, the blocks inside and the reference
+# circuits. `kokeb-docs figures` draws the pinout, the package outline, the block diagram and the circuits from it,
+# `kokeb-docs gen` writes the chip card of the README and the tables of docs/hardware.md,
+# `kokeb-docs hardware --check` validates it and `kokeb-docs hardware --kicad-netlist OUT --circuit ID` exports a
+# circuit for a schematic or PCB tool. Schema: docs/chip-diagrams.md in kokeb-labs/ci-tools.
+#
+# The chip is a family: the card shows the WS2812B 5050 four-pin package of the V5 datasheet (document b-v5) and the
+# other packages through `package.variants`. The pin order differs between parts (docs/hardware.md); every part has
+# the same four signals: DIN from the controller, DOUT to the next pixel, VDD and VSS. The six-pin parts add a
+# separate control supply.
+schema: 1
+chip: WS2812B
+
+refs:
+  pinout: {doc: b-v5, section: "PIN Configuration", page: 2}
+  supply: {doc: b-v5, section: "Absolute Maximum Ratings", page: 2}
+  levels: {doc: b-v5, section: "Electrical Characteristics", page: 2}
+  timing: {doc: b-v5, section: "Data Transfer Time", page: 3}
+  cascade: {doc: b-v5, section: "Data Transmission Method", page: 4}
+  blocks: {doc: b-v5, section: "Data Transmission Method", page: 4}
+  app: {doc: b-af, section: "Typical application circuit", page: 5}
+  outline: {doc: b-v5, section: "Mechanical Dimensions", page: 2}
+  pins6: {doc: ws2812, section: "PIN configuration", page: 2}
+  pins2020: {doc: b-2020, section: "PIN configuration", page: 2}
+  pinsmini: {doc: skm-e, section: "PIN configuration", page: 4}
+  pinsf8: {doc: d-f8, section: "PIN configuration", page: 2}
+
+package:
+  type: "5050 (WS2812B)"
+  pins: 4
+  layout: dual
+  ref: pinout
+  # The body of the mechanical drawing: "Dimension of 5.0 x 5.4 x 1.57 mm, default tolerance of 0.05 mm".
+  outline: {length_mm: 5.4, width_mm: 5.0, height_mm: 1.57, ref: outline}
+  # Other packages the family is sold in, from each document's pin configuration.
+  variants:
+    - {id: p6, type: "5050, 6 pin", pins: 6, size: "5050 (drawing)", ordering: "WS2812, WS2812S",
+       note: "1 DOUT, 2 DIN, 3 VCC (control supply), 4 NC, 5 VDD (LED supply), 6 VSS", ref: pins6}
+    - {id: p2020, type: "2020, 4 pin", pins: 4, size: "2.0 x 2.0 mm (name)", ordering: "WS2812B-2020, WS2812C-2020",
+       note: "1 DO, 2 GND, 3 DI, 4 VDD", ref: pins2020}
+    - {id: pmini, type: "MINI, 4 pin", pins: 4, size: "3.5 mm class (drawing)", ordering: "SK6812MINI, SK6812MINI-E",
+       note: "1 VDD, 2 DOUT, 3 GND, 4 DIN", ref: pinsmini}
+    - {id: pf8, type: "8 mm round, through-hole", pins: 4, size: "8 mm diameter", ordering: "WS2812D-F8",
+       note: "1 DOUT, 2 VDD, 3 GND, 4 DIN", ref: pinsf8}
+
+# The supply range of each rail (the README's chip card shows it): absolute maximum of the V5 document.
+supply:
+  - {name: VDD, min_v: 3.7, max_v: 5.3, ref: supply}
+
+# The port hooks a pin can map to (the names the driver's port headers declare).
+hooks:
+  - {id: transmit, call: "Transmit()", kind: other, source: inc/ws2812_rmt_gpio_interface.hpp, symbol: Transmit}
+  - {id: power, call: "GpioSet(CtrlPin::Power)", kind: gpio-out, source: inc/ws2812_rmt.hpp, symbol: GpioSet}
+
+pins:
+  - {number: 1, name: VDD, type: power, domain: VDD,
+     function: "Supply, 3.7 V to 5.3 V; switched through the optional hook",
+     hook: power, ref: pinout}
+  - {number: 2, name: DOUT, type: digital-out, domain: VDD,
+     function: "Reshaped data to the next pixel (300 ns propagation at most)", unused: "Leave open on the last pixel",
+     ref: cascade}
+  - {number: 3, name: VSS, type: ground, domain: GND, function: "Ground, data and power", ref: pinout}
+  - {number: 4, name: DIN, type: digital-in, domain: VDD,
+     function: "Data in: the timed bit stream; high level at least 2.7 V (V5.0) or 0.63 x VDD (later sheets): \
+       see Input level",
+     hook: transmit, ref: levels}
+
+block_diagram:
+  ref: blocks
+  blocks:
+    - {id: input, label: Input buffer, detail: "hysteresis, VIH 2.7 V or 0.63 x VDD", at: [0, 0], tone: blue,
+       pins: [DIN]}
+    - {id: shift, label: Shift register and latch, detail: "24 bit, GRB, high bit first", at: [1, 0]}
+    - {id: pwm, label: PWM constant-current drivers, detail: "R, G, B, 256 levels", at: [2, 0], tone: teal}
+    - {id: reshape, label: Reshaping amplifier, detail: "forwards the rest of the frame", at: [1, 1], tone: amber,
+       pins: [DOUT], side: right}
+    - {id: por, label: Power-on and power-lost reset, detail: "built in", at: [0, 1], tone: slate,
+       pins: [VDD, VSS]}
+  links:
+    - {from: input, to: shift, label: bits}
+    - {from: shift, to: pwm, label: latched colour}
+    - {from: shift, to: reshape, label: later pixels}
+    - {from: por, to: shift, label: reset}
+
+circuits:
+  - id: typical
+    title: Typical application
+    description: >-
+      One pixel of a strip on a 5 V supply, driven by a 3.3 V MCU. The MCU's GPIO only enables a load switch that
+      feeds the strip, so the pin never carries the strip current and never touches the pixel supply. The data
+      pin goes through a 74HCT-class buffer on the switched 5 V and a 330 ohm resistor next to the first pixel,
+      and a 100 nF capacitor decouples VDD. A 10 kohm pull-down on the buffer input holds the data line low from
+      MCU reset until the RMT channel drives it. The MCU data pin idles low whenever the strip is off, so the buffer
+      input is never driven while its supply is off.
+    ref: app
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: DATA, label: RMT data}
+          - {name: PWR, label: GPIO (supply enable)}
+          - GND
+      - id: U3
+        kind: ic
+        label: Load switch
+        pins: [IN, OUT, EN, GND]
+        unverified: "general practice: the data sheet draws no supply switch; pick one rated above the strip current"
+      - id: U4
+        kind: ic
+        label: 74HCT buffer
+        pins: [A, Y, VCC, GND]
+        unverified: "general practice: the data sheet draws no level shifter; the HCT input accepts a 3.3 V output"
+      - {id: J1, kind: connector, label: "5 V supply", ref: app, pins: ["5V", GND]}
+      - {id: R1, kind: resistor, value: 330 Ω, ref: app,
+         unverified: "series resistor next to the first pixel: practice, 300 to 500 ohm"}
+      - {id: C1, kind: capacitor, value: 100 nF, ref: app}
+      - {id: R2, kind: resistor, value: 10 kΩ,
+         unverified: "pull-down on the data line: practice; the MCU pin floats from reset until the RMT starts"}
+    nets:
+      - {name: "5V in", nodes: [J1.5V, U3.IN]}
+      - {name: "+5V", kind: supply, nodes: [U3.OUT, U1.VDD, C1.1, U4.VCC]}
+      - {name: GND, kind: ground, nodes: [U1.VSS, C1.2, U2.GND, U3.GND, U4.GND, J1.GND, R2.2]}
+      - {name: "Supply enable", nodes: [U2.PWR, U3.EN]}
+      - {name: "RMT data", nodes: [U2.DATA, U4.A, R2.1]}
+      - {name: "Shifted data", nodes: [U4.Y, R1.1]}
+      - {name: DIN, nodes: [R1.2, U1.DIN]}
+    unused: [U1.DOUT]
+  - id: shifted
+    title: Level shifter for a 3.3 V MCU, supply always on
+    description: >-
+      The same data path when the strip supply is not switched: the 3.3 V data pin of the MCU through a 74HCT-class
+      buffer powered from the same 5 V as the pixel, so the pixel sees a full 5 V high level, then the 330 ohm
+      series resistor next to the first pixel. A 10 kohm pull-down on the buffer input holds the line low while the
+      MCU pin floats (from reset until the RMT channel starts), so the always-on pixels see no noise as data.
+    ref: levels
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: DATA, label: RMT data}
+          - GND
+      - id: U4
+        kind: ic
+        label: 74HCT buffer
+        pins: [A, Y, VCC, GND]
+        unverified: "general practice: the data sheet draws no level shifter; the HCT input accepts a 3.3 V output"
+      - {id: R1, kind: resistor, value: 330 Ω, ref: app,
+         unverified: "series resistor next to the first pixel: practice, 300 to 500 ohm"}
+      - {id: C1, kind: capacitor, value: 100 nF, ref: app}
+      - {id: R2, kind: resistor, value: 10 kΩ,
+         unverified: "pull-down on the data line: practice; the MCU pin floats from reset until the RMT starts"}
+    nets:
+      - {name: "+5V", kind: supply, nodes: [U1.VDD, C1.1, U4.VCC]}
+      - {name: GND, kind: ground, nodes: [U1.VSS, C1.2, U2.GND, U4.GND, R2.2]}
+      - {name: "RMT data", nodes: [U2.DATA, U4.A, R2.1]}
+      - {name: "Shifted data", nodes: [U4.Y, R1.1]}
+      - {name: DIN, nodes: [R1.2, U1.DIN]}
+    unused: [U1.DOUT]

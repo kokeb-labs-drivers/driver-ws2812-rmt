@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="866" height="752" viewBox="0 0 866 752" role="img" aria-labelledby="chip-outline-title chip-outline-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-outline-title">WS2812B package, 5050 (WS2812B)</title>
+<desc id="chip-outline-desc">Outline of the WS2812B in 5050 (WS2812B) drawn to scale from above: body 5.4 x 5.0 x 1.57 mm, 4 pins.</desc>
+<rect x="0.5" y="0.5" width="865" height="751" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#7A360E">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#0E1726">WS2812B package, 5050 (WS2812B)</text>
+<text x="32" y="103.8" font-size="15" fill="#566070">Package body from above, to scale, pin 1 marked; arrows give the datasheet's dimensions. The pads are</text>
+<text x="32" y="125.5" font-size="15" fill="#566070">centred on each side, evenly spaced: the land pattern is in the datasheet. Datasheet: Mechanical</text>
+<text x="32" y="147.3" font-size="15" fill="#566070">Dimensions, p. 2.</text>
+<rect x="32" y="163.3" width="802" height="1" fill="#E2E7EE"/>
+<path d="M380.3 199.3 L426.3 199.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M380.3 499.3 L426.3 499.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M98.5 503.3 L98.5 549.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M376.3 503.3 L376.3 549.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M74.5 684.5 L400.3 684.5" fill="none" stroke="#8893A2" stroke-width="1.2"/>
+<path d="M380.3 597.3 L412.3 597.3" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M380.3 684.5 L412.3 684.5" fill="none" stroke="#8893A2" stroke-width="1" stroke-dasharray="3 3"/>
+<rect x="98.5" y="199.3" width="277.8" height="300" rx="8" fill="#F5F7FA" stroke="#2B3442" stroke-width="2"/>
+<rect x="76.5" y="323" width="22" height="18.7" rx="2" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<rect x="76.5" y="357" width="22" height="18.7" rx="2" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="376.3" y="323" width="22" height="18.7" rx="2" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<rect x="376.3" y="357" width="22" height="18.7" rx="2" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<circle cx="112.5" cy="213.3" r="6" fill="#2B3442"/>
+<path d="M420.3 199.3 L420.3 499.3" fill="none" stroke="#2B3442" stroke-width="1.2"/>
+<path d="M420.3 199.3 L423.3 206.3 L417.3 206.3 Z" fill="#2B3442"/>
+<path d="M420.3 499.3 L417.3 492.3 L423.3 492.3 Z" fill="#2B3442"/>
+<path d="M98.5 543.3 L376.3 543.3" fill="none" stroke="#2B3442" stroke-width="1.2"/>
+<path d="M98.5 543.3 L105.5 540.3 L105.5 546.3 Z" fill="#2B3442"/>
+<path d="M376.3 543.3 L369.3 546.3 L369.3 540.3 Z" fill="#2B3442"/>
+<rect x="98.5" y="597.3" width="277.8" height="87.2" rx="2" fill="#F5F7FA" stroke="#2B3442" stroke-width="2"/>
+<path d="M406.3 597.3 L406.3 684.5" fill="none" stroke="#2B3442" stroke-width="1.2"/>
+<path d="M406.3 597.3 L409.3 604.3 L403.3 604.3 Z" fill="#2B3442"/>
+<path d="M406.3 684.5 L403.3 677.5 L409.3 677.5 Z" fill="#2B3442"/>
+<text x="87.5" y="336.4" font-size="11.5" font-weight="700" text-anchor="middle" fill="#9F1239">1</text>
+<text x="87.5" y="370.4" font-size="11.5" font-weight="700" text-anchor="middle" fill="#14532D">2</text>
+<text x="387.3" y="336.4" font-size="11.5" font-weight="700" text-anchor="middle" fill="#0B5F59">4</text>
+<text x="387.3" y="370.4" font-size="11.5" font-weight="700" text-anchor="middle" fill="#334155">3</text>
+<text x="237.4" y="341.3" font-size="20" font-weight="700" text-anchor="middle" fill="#0E1726">WS2812B</text>
+<text x="237.4" y="363.3" font-size="13" text-anchor="middle" fill="#566070">5050 (WS2812B)</text>
+<text x="430.3" y="353.8" font-size="12.5" font-weight="600" fill="#2B3442">5.4 mm</text>
+<text x="237.4" y="561.3" font-size="12.5" font-weight="600" text-anchor="middle" fill="#2B3442">5.0 mm</text>
+<text x="416.3" y="645.4" font-size="12.5" font-weight="600" fill="#2B3442">1.57 mm</text>
+<text x="84.5" y="645.4" font-size="12.5" text-anchor="end" fill="#566070">Side view</text>
+<text x="545" y="221.3" font-size="22" font-weight="700" fill="#0E1726">5.4 x 5.0 x 1.57 mm</text>
+<text x="545" y="249.3" font-size="13.5" fill="#566070">5050 (WS2812B), 4 pins</text>
+<text x="545" y="271.3" font-size="13.5" fill="#566070">Leads reach out of the body</text>
+<text x="545" y="293.3" font-size="13.5" fill="#566070">4 other packages: 5050, 6 pin, 2020, 4</text>
+<text x="545" y="315.3" font-size="13.5" fill="#566070">pin, MINI, 4 pin, 8 mm round, through-hole</text>
+<rect x="32" y="705.9" width="14" height="14" rx="4" fill="#FFEEF2" stroke="#DB2752" stroke-width="1.4"/>
+<text x="54" y="717.5" font-size="12.5" fill="#566070">power</text>
+<rect x="117.6" y="705.9" width="14" height="14" rx="4" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="139.6" y="717.5" font-size="12.5" fill="#566070">ground</text>
+<rect x="208.5" y="705.9" width="14" height="14" rx="4" fill="#E6F6F4" stroke="#0B7A72" stroke-width="1.4"/>
+<text x="230.5" y="717.5" font-size="12.5" fill="#566070">digital in</text>
+<rect x="306.9" y="705.9" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="328.9" y="717.5" font-size="12.5" fill="#566070">digital out</text>
+</svg>
