@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['kconfigdefaults_0',['KconfigDefaults',['../namespacews2812__rmt.html#ae7769d6cfc3623e9d6c0ef2c00761d12',1,'ws2812_rmt']]],
+  ['kconfigvariant_1',['KconfigVariant',['../namespacews2812__rmt.html#aa18d7cd85f5c8f9c33fd403f370cba7c',1,'ws2812_rmt']]],
+  ['kgamma22_2',['kGamma22',['../namespacews2812__rmt.html#a0db6f5692b4eb746ab0121d3fb42d926',1,'ws2812_rmt']]],
+  ['kmaxdurationns_3',['kMaxDurationNs',['../group__ws2812__rmt__types.html#ga4a48df02c90f16150d01e62fb190d12b',1,'ws2812_rmt']]],
+  ['kmaxperiodns_4',['kMaxPeriodNs',['../group__ws2812__rmt__types.html#gaee95e581ed39d2a1875b79c610298964',1,'ws2812_rmt']]],
+  ['kmaxpixels_5',['kMaxPixels',['../group__ws2812__rmt__types.html#gae47ea182f6c1b6a26047c5bd8abfa937',1,'ws2812_rmt']]],
+  ['kmaxresetus_6',['kMaxResetUs',['../group__ws2812__rmt__types.html#ga552512024a78b53b7c2266fbbca2d77d',1,'ws2812_rmt']]],
+  ['kmaxresolutionhz_7',['kMaxResolutionHz',['../group__ws2812__rmt__types.html#ga26f8d606822380ed3fafe2ae7f6bca97',1,'ws2812_rmt']]],
+  ['kmaxsettleus_8',['kMaxSettleUs',['../group__ws2812__rmt__types.html#ga30a37c6e9d249c350be5e540454174d0',1,'ws2812_rmt']]],
+  ['kmaxslackms_9',['kMaxSlackMs',['../group__ws2812__rmt__types.html#ga65dd4874f7d0321af53b3731d628e2a6',1,'ws2812_rmt']]],
+  ['kmaxsupplymv_10',['kMaxSupplyMv',['../group__ws2812__rmt__types.html#ga7247fea1c2a94889e204f4827e0eacae',1,'ws2812_rmt']]],
+  ['kminresolutionhz_11',['kMinResolutionHz',['../namespacews2812__rmt.html#a25b68b923297d4b5a05e30b502380c8b',1,'ws2812_rmt']]],
+  ['knspersecond_12',['kNsPerSecond',['../group__ws2812__rmt__functions.html#ga1680a56d8912906154474b684a7eaa54',1,'ws2812_rmt']]],
+  ['kordergrb_13',['kOrderGrb',['../group__ws2812__rmt__types.html#gadc661efa301925d59194b6950d28fc93',1,'ws2812_rmt']]],
+  ['kordergrbw_14',['kOrderGrbw',['../group__ws2812__rmt__types.html#gafc562ea2670a419ba74ee10bc1f38144',1,'ws2812_rmt']]],
+  ['korderrgb_15',['kOrderRgb',['../group__ws2812__rmt__types.html#ga3a84c1cbdb3d020a76126382c774a582',1,'ws2812_rmt']]],
+  ['korderrgbw_16',['kOrderRgbw',['../group__ws2812__rmt__types.html#ga75b3fb3473586ae0e31f818134a18554',1,'ws2812_rmt']]],
+  ['krecommendedresolutionhz_17',['kRecommendedResolutionHz',['../namespacews2812__rmt.html#acf4bf9c1b7913d495327b08b47804b4e',1,'ws2812_rmt']]],
+  ['kresetmarginus_18',['kResetMarginUs',['../group__ws2812__rmt__types.html#ga0ebdee7f1f95ba063c09c9cece0892c3',1,'ws2812_rmt']]],
+  ['krmthalfsymbolmaxticks_19',['kRmtHalfSymbolMaxTicks',['../namespacews2812__rmt.html#a234f7c9f3e8ad64ce8c3b05d9209f517',1,'ws2812_rmt']]],
+  ['krmtmaxprescale_20',['kRmtMaxPrescale',['../group__ws2812__rmt__functions.html#gacdafd9bf2d6f9111ad80d75a9bc708c1',1,'ws2812_rmt']]],
+  ['ksk6812minhighmv_21',['kSk6812MinHighMv',['../group__ws2812__rmt__types.html#ga9f022883a482630a9f36ae31f10e8b2a',1,'ws2812_rmt']]],
+  ['kv5minhighmv_22',['kV5MinHighMv',['../group__ws2812__rmt__types.html#ga4eac4156db287d8c839553665a6f899b',1,'ws2812_rmt']]]
+];
