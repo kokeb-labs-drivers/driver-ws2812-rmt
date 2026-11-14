@@ -9,12 +9,6 @@ hide:
 
 # WS2812_RMT Driver
 
-<!-- generated: chip-summary -->
-The **WS2812B** is an addressable RGB LED with its control circuit in one 5050 package: pixels chain on a single data
-wire, each keeps the first 24 bits it receives for its three LEDs and passes the rest on to the next pixel (Features and
-Benefits, p. 1).
-<!-- /generated -->
-
 <p>A C++20 driver for single-wire addressable RGB and RGBW LEDs (WS2812, SK6812 and compatible), sent as a timed
 bit stream through a small port class.</p>
 
@@ -22,6 +16,12 @@ bit stream through a small port class.</p>
 [API guide](api-guide.md){ .md-button }
 [Source on GitHub](https://github.com/kokeb-labs-drivers/driver-ws2812-rmt){ .md-button }
 </div>
+
+<!-- generated: chip-summary -->
+The **WS2812B** is an addressable RGB LED with its control circuit in one 5050 package: pixels chain on a single data
+wire, each keeps the first 24 bits it receives for its three LEDs and passes the rest on to the next pixel (Features and
+Benefits, p. 1).
+<!-- /generated -->
 
 <!-- figure: chip-hero -->
 <picture>
@@ -99,6 +99,27 @@ Uses named by the datasheet (Features and Benefits, p. 1).
 </picture>
 <!-- /figure -->
 
+<!-- figure: chip-wiring-shifted -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/chip-wiring-shifted.dark.svg">
+  <img src="diagrams/chip-wiring-shifted.svg"
+    alt="Wiring of the WS2812B for the Level shifter for a 3.3 V MCU, supply always on: MCU RMT data to 74HCT
+    buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support
+    parts are listed under the drawing.">
+</picture>
+<!-- /figure -->
+
+<!-- figure: chip-wiring-typical -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/chip-wiring-typical.dark.svg">
+  <img src="diagrams/chip-wiring-typical.svg"
+    alt="Wiring of the WS2812B for the Typical application: MCU GPIO (supply enable) to Load switch EN
+    (GpioSet(CtrlPin::Power)); Load switch OUT to VDD; MCU RMT data to 74HCT buffer A; 74HCT buffer Y to
+    DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the
+    drawing.">
+</picture>
+<!-- /figure -->
+
 <!-- figure: chip-outline -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="diagrams/chip-outline.dark.svg">
@@ -118,6 +139,33 @@ Uses named by the datasheet (Features and Benefits, p. 1).
 <!-- /figure -->
 
 The pin tables, the full schematic and the timing are on [Hardware](hardware.md).
+
+## Quick start
+
+Wire the chip as above, write the port for your MCU ([Porting](porting.md)), then:
+
+<!-- generated: quickstart-code -->
+```cpp
+#include "ws2812_rmt.hpp"
+
+// 60 pixels of a current WS2812B (V5 or later): the default variant, GRB order.
+int32_t light_first_pixel_red() {
+  MyPort port;
+  ws2812_rmt::Ws2812Rmt<MyPort, 60> strip(port); // owns the pixel and wire buffers; no I/O yet
+  if (auto r = strip.EnsureInitialized(); !r) { // 1. channel up, waveform resolved at the real rate
+    return static_cast<int32_t>(r.error); //    Bus, or TimingUnreachable for an unsuitable rate
+  }
+  strip.Clear();                                                          // 2. all pixels black
+  static_cast<void>(strip.SetPixel(0, ws2812_rmt::Colour{255, 0, 0, 0})); //    pixel 0 is the first
+  if (auto r = strip.Show(); !r) {        // 3. encode, send, wait for the reset
+    return static_cast<int32_t>(r.error); //    Bus: the frame was not sent
+  }
+  return 0;
+}
+```
+<!-- /generated -->
+
+Every step, with the port and what to check when it does not work: [Quickstart](quickstart.md).
 
 ## Driver coverage
 

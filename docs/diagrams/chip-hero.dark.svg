@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="592" viewBox="0 0 1200 592" role="img" aria-labelledby="chip-hero-title chip-hero-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="613" viewBox="0 0 1200 613" role="img" aria-labelledby="chip-hero-title chip-hero-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
 <title id="chip-hero-title">WS2812B</title>
 <desc id="chip-hero-desc">Overview of the WS2812B, an addressable RGB LED with its control circuit in one 5050 package: pixels chain on a single data wire, each keeps the first 24 bits it receives for its three LEDs and passes the rest on to the next pixel. A MCU talks to it over one data wire; it drives Red, green and blue LEDs, then Next pixel. Headline figures: 800 kbit/s data rate on one wire; 24 bit per pixel: G, R, B, 8 bits each; 256 brightness levels per colour; &gt; 280 µs low time that latches a frame.</desc>
 <defs><marker id="fk-arrow-blue-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#60A5FA"/></marker><marker id="fk-arrow-teal-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2BB3A3"/></marker></defs>
-<rect x="0.5" y="0.5" width="1199" height="591" rx="16" fill="#0E131A" stroke="#283241"/>
+<rect x="0.5" y="0.5" width="1199" height="612" rx="16" fill="#0E131A" stroke="#283241"/>
 <text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">ADDRESSABLE RGB LED</text>
 <text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">WS2812B</text>
 <text x="32" y="115.4" font-size="18" fill="#9AA6B5">What talks to it, what it drives and what it reads back, with its headline numbers. Datasheet: Features and Benefits, p. 1.</text>
@@ -22,10 +22,10 @@
 <rect x="722" y="188.4" width="4" height="148" rx="2" fill="#2BB3A3"/>
 <rect x="975" y="193.4" width="193" height="138" rx="12" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
 <rect x="975" y="201.4" width="4" height="122" rx="2" fill="#2BB3A3"/>
-<rect x="32" y="407.4" width="272" height="153.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
-<rect x="320" y="407.4" width="272" height="153.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
-<rect x="608" y="407.4" width="272" height="153.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
-<rect x="896" y="407.4" width="272" height="153.9" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="32" y="407.4" width="272" height="175.5" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="320" y="407.4" width="272" height="175.5" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="608" y="407.4" width="272" height="175.5" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
+<rect x="896" y="407.4" width="272" height="175.5" rx="12" fill="#18202B" stroke="#3A4657" stroke-width="1"/>
 <text x="535" y="256.4" font-size="30" font-weight="700" text-anchor="middle" fill="#E8EDF3">WS2812B</text>
 <text x="535" y="286.4" font-size="17" text-anchor="middle" fill="#9AA6B5">5050 (WS2812B)</text>
 <text x="535" y="310.4" font-size="16" text-anchor="middle" fill="#9AA6B5">4 pins</text>
@@ -45,16 +45,17 @@
 <text x="999" y="308.4" font-size="17" fill="#D2DAE4">reshaped</text>
 <text x="48" y="455.4" font-size="30" font-weight="700" fill="#E8EDF3">800 kbit/s</text>
 <text x="48" y="485" font-size="17" fill="#D2DAE4">data rate on one wire</text>
-<text x="48" y="543.3" font-size="16" fill="#9AA6B5">Features and Benefits, p. 1</text>
+<text x="48" y="564.9" font-size="16" fill="#9AA6B5">Features and Benefits, p. 1</text>
 <text x="336" y="455.4" font-size="30" font-weight="700" fill="#E8EDF3">24 bit</text>
 <text x="336" y="485" font-size="17" fill="#D2DAE4">per pixel: G, R, B, 8 bits</text>
 <text x="336" y="507.9" font-size="17" fill="#D2DAE4">each</text>
-<text x="336" y="543.3" font-size="16" fill="#9AA6B5">Data Transmission Method, p. 4</text>
+<text x="336" y="543.3" font-size="16" fill="#9AA6B5">Data Transmission Method, p.</text>
+<text x="336" y="564.9" font-size="16" fill="#9AA6B5">4</text>
 <text x="624" y="455.4" font-size="30" font-weight="700" fill="#E8EDF3">256</text>
 <text x="624" y="485" font-size="17" fill="#D2DAE4">brightness levels per colour</text>
-<text x="624" y="543.3" font-size="16" fill="#9AA6B5">Features and Benefits, p. 1</text>
+<text x="624" y="564.9" font-size="16" fill="#9AA6B5">Features and Benefits, p. 1</text>
 <text x="912" y="455.4" font-size="30" font-weight="700" fill="#E8EDF3">&gt; 280 µs</text>
 <text x="912" y="485" font-size="17" fill="#D2DAE4">low time that latches a</text>
 <text x="912" y="507.9" font-size="17" fill="#D2DAE4">frame</text>
-<text x="912" y="543.3" font-size="16" fill="#9AA6B5">Data Transfer Time, p. 3</text>
+<text x="912" y="564.9" font-size="16" fill="#9AA6B5">Data Transfer Time, p. 3</text>
 </svg>

@@ -216,8 +216,9 @@ Drawn from:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="chip-wiring-shifted.dark.svg">
   <img src="chip-wiring-shifted.svg"
-    alt="Wiring of the WS2812B for the Level shifter for a 3.3 V MCU, supply always on: . Supplies, grounds
-    and the support parts are listed under the drawing.">
+    alt="Wiring of the WS2812B for the Level shifter for a 3.3 V MCU, supply always on: MCU RMT data to 74HCT
+    buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support
+    parts are listed under the drawing.">
 </picture>
 <!-- /figure -->
 
@@ -235,8 +236,10 @@ Drawn from:
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="chip-wiring-typical.dark.svg">
   <img src="chip-wiring-typical.svg"
-    alt="Wiring of the WS2812B for the Typical application: . Supplies, grounds and the support parts are
-    listed under the drawing.">
+    alt="Wiring of the WS2812B for the Typical application: MCU GPIO (supply enable) to Load switch EN
+    (GpioSet(CtrlPin::Power)); Load switch OUT to VDD; MCU RMT data to 74HCT buffer A; 74HCT buffer Y to
+    DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the
+    drawing.">
 </picture>
 <!-- /figure -->
 

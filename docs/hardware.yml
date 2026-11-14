@@ -200,7 +200,7 @@ circuits:
       - {name: "5V in", nodes: [J1.5V, U3.IN]}
       - {name: "+5V", kind: supply, nodes: [U3.OUT, U1.VDD, C1.1, U4.VCC]}
       - {name: GND, kind: ground, nodes: [U1.VSS, C1.2, U2.GND, U3.GND, U4.GND, J1.GND, R2.2]}
-      - {name: "Supply enable", nodes: [U2.PWR, U3.EN]}
+      - {name: "Supply enable", nodes: [U2.PWR, U3.EN], hook: power}
       - {name: "RMT data", nodes: [U2.DATA, U4.A, R2.1]}
       - {name: "Shifted data", nodes: [U4.Y, R1.1]}
       - {name: DIN, nodes: [R1.2, U1.DIN]}

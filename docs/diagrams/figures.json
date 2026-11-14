@@ -119,7 +119,7 @@
   "chip-wiring-direct": {
     "title": "Wiring: Direct data line",
     "alt": "Wiring of the WS2812B for the Direct data line: MCU RMT data to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing.",
-    "description": "The MCU on the left, the WS2812B in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "description": "The MCU on the left, the WS2812B in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
     "profile": "overview",
     "width": 1200,
     "source": "docs/hardware.yml",
@@ -131,8 +131,8 @@
   },
   "chip-wiring-shifted": {
     "title": "Wiring: Level shifter for a 3.3 V MCU, supply always on",
-    "alt": "Wiring of the WS2812B for the Level shifter for a 3.3 V MCU, supply always on: . Supplies, grounds and the support parts are listed under the drawing.",
-    "description": "The MCU on the left, the WS2812B in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "alt": "Wiring of the WS2812B for the Level shifter for a 3.3 V MCU, supply always on: MCU RMT data to 74HCT buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU on the left, the WS2812B on the right of the parts between them (74HCT buffer). Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
     "profile": "overview",
     "width": 1200,
     "source": "docs/hardware.yml",
@@ -144,8 +144,8 @@
   },
   "chip-wiring-typical": {
     "title": "Wiring: Typical application",
-    "alt": "Wiring of the WS2812B for the Typical application: . Supplies, grounds and the support parts are listed under the drawing.",
-    "description": "The MCU on the left, the WS2812B in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "alt": "Wiring of the WS2812B for the Typical application: MCU GPIO (supply enable) to Load switch EN (GpioSet(CtrlPin::Power)); Load switch OUT to VDD; MCU RMT data to 74HCT buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU on the left, the WS2812B on the right of the parts between them (Load switch, 74HCT buffer). Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
     "profile": "overview",
     "width": 1200,
     "source": "docs/hardware.yml",

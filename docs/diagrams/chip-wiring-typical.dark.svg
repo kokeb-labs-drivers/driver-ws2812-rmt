@@ -1,22 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="626" viewBox="0 0 1200 626" role="img" aria-labelledby="chip-wiring-typical-title chip-wiring-typical-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="843" viewBox="0 0 1200 843" role="img" aria-labelledby="chip-wiring-typical-title chip-wiring-typical-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
 <title id="chip-wiring-typical-title">Wiring: Typical application</title>
-<desc id="chip-wiring-typical-desc">Wiring of the WS2812B for the Typical application: . Supplies, grounds and the support parts are listed under the drawing.</desc>
-<rect x="0.5" y="0.5" width="1199" height="625" rx="16" fill="#0E131A" stroke="#283241"/>
+<desc id="chip-wiring-typical-desc">Wiring of the WS2812B for the Typical application: MCU GPIO (supply enable) to Load switch EN (GpioSet(CtrlPin::Power)); Load switch OUT to VDD; MCU RMT data to 74HCT buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing.</desc>
+<rect x="0.5" y="0.5" width="1199" height="842" rx="16" fill="#0E131A" stroke="#283241"/>
 <text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">PINS AND WIRING</text>
 <text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">Wiring: Typical application</text>
 <text x="32" y="115.4" font-size="18" fill="#9AA6B5">What you connect by hand, with the driver hook on each MCU wire. The full schematic, with every part and value, is on the</text>
 <text x="32" y="141.5" font-size="18" fill="#9AA6B5">Hardware page. Datasheet: Typical application circuit, p. 5.</text>
 <rect x="32" y="157.5" width="1136" height="1" fill="#252F3C"/>
-<rect x="640" y="175.5" width="240" height="144" rx="10" fill="#18202B" stroke="#D2DAE4" stroke-width="2.2"/>
-<rect x="32" y="347.5" width="1136" height="79" rx="12" fill="#321820" stroke="#6E3141" stroke-width="1"/>
-<rect x="32" y="440.5" width="1136" height="79" rx="12" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
-<text x="760" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#E8EDF3">WS2812B</text>
-<text x="760" y="232.9" font-size="16" text-anchor="middle" fill="#9AA6B5">U1</text>
-<text x="50" y="382.5" font-size="20" font-weight="700" fill="#FECDD3">Supplies and ground</text>
-<text x="50" y="405.9" font-size="17" fill="#FECDD3">+5V: VDD; also U3.OUT, U4.VCC · GND: VSS; also U2.GND, U3.GND, U4.GND, J1.GND</text>
-<text x="50" y="475.5" font-size="20" font-weight="700" fill="#E2E8F0">Also on the board</text>
-<text x="50" y="498.9" font-size="17" fill="#E2E8F0">Support parts: 1 capacitor, 2 resistors around the supplies (values in the full schematic). Not wired in this circuit (1): DOUT.</text>
-<text x="32" y="545" font-size="16" fill="#9AA6B5">* Not confirmed in the datasheet: U3: general practice: the data sheet draws no supply switch; pick one rated above the strip current; U4:</text>
-<text x="32" y="568" font-size="16" fill="#9AA6B5">general practice: the data sheet draws no level shifter; the HCT input accepts a 3.3 V output; R1: series resistor next to the first pixel:</text>
-<text x="32" y="591.1" font-size="16" fill="#9AA6B5">practice, 300 to 500 ohm; R2: pull-down on the data line: practice; the MCU pin floats from reset until the RMT starts.</text>
+<path d="M294.6 311.1 L568.6 311.1" fill="none" stroke="#D2DAE4" stroke-width="2.2"/>
+<path d="M718.6 311.1 L907.4 311.1" fill="none" stroke="#FB7185" stroke-width="2.2"/>
+<path d="M294.6 435.5 L568.6 435.5" fill="none" stroke="#D2DAE4" stroke-width="2.2"/>
+<path d="M718.6 435.5 L907.4 435.5" fill="none" stroke="#2BB3A3" stroke-width="2.2"/>
+<rect x="921.4" y="175.5" width="240" height="328.8" rx="10" fill="#18202B" stroke="#D2DAE4" stroke-width="2.2"/>
+<rect x="38.6" y="175.5" width="256" height="328.8" rx="12" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="568.6" y="268.3" width="150" height="85.6" rx="12" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="568.6" y="392.7" width="150" height="85.6" rx="12" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="32" y="532.3" width="1136" height="79" rx="12" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<rect x="32" y="625.3" width="1136" height="79" rx="12" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="1041.4" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#E8EDF3">WS2812B</text>
+<text x="1041.4" y="232.9" font-size="16" text-anchor="middle" fill="#9AA6B5">U1</text>
+<text x="56.6" y="210.5" font-size="20" font-weight="700" fill="#BFDBFE">MCU</text>
+<text x="56.6" y="232.9" font-size="16" fill="#BFDBFE">U2</text>
+<text x="568.6" y="258.3" font-size="16" font-weight="700" fill="#DDD6FE">Load switch</text>
+<text x="276.6" y="316.9" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">GPIO (supply enable)</text>
+<text x="586.6" y="316.9" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#DDD6FE">EN</text>
+<text x="431.6" y="301.1" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">Supply enable</text>
+<text x="431.6" y="333.9" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">GpioSet(CtrlPin::Power)</text>
+<text x="700.6" y="316.9" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#DDD6FE">OUT</text>
+<text x="943.4" y="316.9" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">VDD</text>
+<rect x="907.4" y="305.1" width="14" height="12" rx="2" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="813" y="301.1" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">+5V  pin 1</text>
+<text x="568.6" y="382.7" font-size="16" font-weight="700" fill="#DDD6FE">74HCT buffer</text>
+<text x="276.6" y="441.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">RMT data</text>
+<text x="586.6" y="441.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#DDD6FE">A</text>
+<text x="431.6" y="425.5" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">RMT data</text>
+<text x="431.6" y="458.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">+ R2 10 kΩ</text>
+<text x="700.6" y="441.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#DDD6FE">Y</text>
+<text x="943.4" y="441.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">DIN</text>
+<rect x="907.4" y="429.5" width="14" height="12" rx="2" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="813" y="425.5" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">DIN  pin 4</text>
+<text x="813" y="458.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">Transmit()</text>
+<text x="813" y="479.9" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">through R1 330 Ω</text>
+<text x="50" y="567.3" font-size="20" font-weight="700" fill="#FECDD3">Supplies and ground</text>
+<text x="50" y="590.8" font-size="17" fill="#FECDD3">+5V: VDD; also U3.OUT, U4.VCC · GND: VSS; also U2.GND, U3.GND, U4.GND, J1.GND</text>
+<text x="50" y="660.3" font-size="20" font-weight="700" fill="#E2E8F0">Also on the board</text>
+<text x="50" y="683.8" font-size="17" fill="#E2E8F0">Support parts: 1 capacitor, 2 resistors around the supplies (values in the full schematic). Not wired in this circuit (1): DOUT.</text>
+<text x="32" y="729.8" font-size="16" fill="#9AA6B5">* Not confirmed in the datasheet: U3: general practice: the data sheet draws no supply switch; pick one rated above the strip current; U4:</text>
+<text x="32" y="752.8" font-size="16" fill="#9AA6B5">general practice: the data sheet draws no level shifter; the HCT input accepts a 3.3 V output; R1: series resistor next to the first pixel:</text>
+<text x="32" y="775.9" font-size="16" fill="#9AA6B5">practice, 300 to 500 ohm; R2: pull-down on the data line: practice; the MCU pin floats from reset until the RMT starts.</text>
+<rect x="32" y="793.1" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="54" y="807.7" font-size="16" fill="#9AA6B5">power</text>
+<rect x="128.7" y="793.1" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="150.7" y="807.7" font-size="16" fill="#9AA6B5">digital in</text>
 </svg>
