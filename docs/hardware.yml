@@ -13,6 +13,8 @@ schema: 1
 chip: WS2812B
 
 refs:
+  cover: {doc: b-v5, section: "Features and Benefits", page: 1}
+  frame: {doc: b-v5, section: "Composition of 24bit Data", page: 4}
   pinout: {doc: b-v5, section: "PIN Configuration", page: 2}
   supply: {doc: b-v5, section: "Absolute Maximum Ratings", page: 2}
   levels: {doc: b-v5, section: "Electrical Characteristics", page: 2}
@@ -47,6 +49,81 @@ package:
 # The supply range of each rail (the README's chip card shows it): absolute maximum of the V5 document.
 supply:
   - {name: VDD, min_v: 3.7, max_v: 5.3, ref: supply}
+
+# The chip-first README: what the pixel is and does, where it is used, how the driver covers it, what one pixel's
+# 24 bits carry. `kokeb-docs figures` draws chip-hero, chip-capabilities and chip-frame-pixel from it, `kokeb-docs gen`
+# the README's chip-summary, chip-uses and chip-coverage regions. The pixel described is the WS2812B of the V5 sheet
+# (document b-v5); the other parts of the family differ in timing and pin order (docs/hardware.md, docs/timing.md).
+overview:
+  summary: >-
+    an addressable RGB LED with its control circuit in one 5050 package: pixels chain on a single data wire, each keeps
+    the first 24 bits it receives for its three LEDs and passes the rest on to the next pixel
+  category: Addressable RGB LED
+  ref: cover
+  applications:
+    - Full-color modules
+    - LED full-color soft and hard light bars
+    - LED guardrail tubes
+    - LED decorative lighting
+    - LED screens, and indoor and outdoor irregular video screens
+    - Marquees on electronic products and electrical equipment
+  specs:
+    - {value: "800 kbit/s", label: data rate on one wire, ref: cover}
+    - {value: "24 bit", label: "per pixel: G, R, B, 8 bits each", ref: cascade}
+    - {value: "256", label: "brightness levels per colour", ref: cover}
+    - {value: "> 280 µs", label: "low time that latches a frame", ref: timing}
+  system:
+    host: MCU
+    bus: "one data wire"
+    drives:
+      - {label: "Red, green and blue LEDs", detail: "constant-current drivers, 256 levels each", ref: cover}
+      - {label: Next pixel, detail: "DOUT, the rest of the frame reshaped", ref: cascade}
+
+# Headers the capability `api` names are checked against.
+driver:
+  api: [inc/ws2812_rmt.hpp, inc/ws2812_rmt_types.hpp, inc/ws2812_rmt_functions.hpp,
+        inc/ws2812_rmt_gpio_interface.hpp]
+
+capabilities:
+  - {id: colour, title: 24-bit pixel colour, icon: light, status: supported, ref: frame, docs: colour.md,
+     what: "Stores the colours and sends each pixel as G, R, B, high bit first; the colour order is a Config field",
+     api: [SetPixel, GetPixel, Fill, Clear, kOrderGrb]}
+  - {id: cascade, title: Cascaded pixels, icon: chain, status: supported, ref: cascade,
+     what: "Sends a whole strip in one frame: each pixel keeps its 24 bits and forwards the rest",
+     api: [Show, Length, kMaxPixels]}
+  - {id: timing, title: Bit timing, icon: clock, status: supported, ref: timing, docs: timing.md,
+     what: "Turns the datasheet pulse windows into ticks of the rate your port really runs at, or refuses",
+     api: [CurrentWaveform, ResolutionHz, "Error::TimingUnreachable"]}
+  - {id: latch, title: Frame latch, icon: check, status: supported, ref: timing, docs: timing.md,
+     what: "Ends a frame with a low longer than the reset time (above 280 µs on the V5 sheet) so the pixels latch",
+     api: [Show, FrameTimeUs]}
+  - {id: brightness, title: 256 brightness levels, icon: gauge, status: supported, ref: cover, docs: colour.md,
+     what: "Scales the colours before sending, with an optional gamma table; the chip itself takes 8 bits per colour",
+     api: [SetBrightness, SetGamma, "Gamma::Gamma22"]}
+  - {id: power, title: Shared power source, icon: power, status: supported, ref: cover,
+     what: "Logic and LEDs share one supply, so the driver can switch the strip's supply from an MCU pin",
+     api: [PowerOn, PowerOff, GpioSet, "CtrlPin::Power"]}
+  - {id: family, title: Other generations, icon: tag, status: supported, ref: pinout, docs: timing.md,
+     what: "Timing windows for the WS2812 and WS2812B generations, WS2812C and D, and SK6812 parts, or a Custom timing",
+     api: [Variant, "Variant::Custom"]}
+  - {id: level, title: Input level, icon: gate, status: not-covered, ref: levels, docs: hardware.md,
+     what: "DIN needs at least 2.7 V on the V5 sheet; the driver cannot see the level, so a level shifter is yours"}
+
+frames:
+  - id: pixel
+    title: Pixel data
+    description: >-
+      The first pixel keeps the first 24 bits on DIN, sent in the order G, R, B, high bit first, and forwards every
+      bit after them on DOUT.
+    bits: 24
+    ref: frame
+    rows:
+      - label: DIN
+        sub: "first 24 bits"
+        fields:
+          - {name: G7 to G0, bits: [23, 16], tone: green, short: green}
+          - {name: R7 to R0, bits: [15, 8], tone: amber, short: red}
+          - {name: B7 to B0, bits: [7, 0], tone: blue, short: blue}
 
 # The port hooks a pin can map to (the names the driver's port headers declare).
 hooks:
@@ -159,5 +236,30 @@ circuits:
       - {name: GND, kind: ground, nodes: [U1.VSS, C1.2, U2.GND, U4.GND, R2.2]}
       - {name: "RMT data", nodes: [U2.DATA, U4.A, R2.1]}
       - {name: "Shifted data", nodes: [U4.Y, R1.1]}
+      - {name: DIN, nodes: [R1.2, U1.DIN]}
+    unused: [U1.DOUT]
+  - id: direct
+    title: Direct data line
+    description: >-
+      The 3.3 V data pin of the MCU straight to DIN through a 330 ohm resistor next to the first pixel, with the pixel
+      on a 5 V supply and a 100 nF capacitor at VDD. This meets the V5.0 sheet's 2.7 V high level (and the 2025 V6
+      sheet's) but not the sheets that ask for 0.63 x VDD; see Input level on the Hardware page.
+    ref: levels
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: DATA, label: RMT data}
+          - GND
+      - {id: J1, kind: connector, label: "5 V supply", ref: app, pins: ["5V", GND]}
+      - {id: R1, kind: resistor, value: 330 Ω, ref: app,
+         unverified: "series resistor next to the first pixel: practice, 300 to 500 ohm"}
+      - {id: C1, kind: capacitor, value: 100 nF, ref: app}
+    nets:
+      - {name: "+5V", kind: supply, nodes: [J1.5V, U1.VDD, C1.1]}
+      - {name: GND, kind: ground, nodes: [U1.VSS, C1.2, U2.GND, J1.GND]}
+      - {name: "RMT data", nodes: [U2.DATA, R1.1]}
       - {name: DIN, nodes: [R1.2, U1.DIN]}
     unused: [U1.DOUT]

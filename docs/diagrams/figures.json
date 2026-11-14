@@ -12,6 +12,32 @@
       "inc/ws2812_rmt_gpio_interface.hpp"
     ]
   },
+  "chip-capabilities": {
+    "title": "What the WS2812B does",
+    "alt": "Capability map of the WS2812B: 24-bit pixel colour (supported): Stores the colours and sends each pixel as G, R, B, high bit first; the colour order is a Config field; Cascaded pixels (supported): Sends a whole strip in one frame: each pixel keeps its 24 bits and forwards the rest; Bit timing (supported): Turns the datasheet pulse windows into ticks of the rate your port really runs at, or refuses; Frame latch (supported): Ends a frame with a low longer than the reset time (above 280 µs on the V5 sheet) so the pixels latch; 256 brightness levels (supported): Scales the colours before sending, with an optional gamma table; the chip itself takes 8 bits per colour; Shared power source (supported): Logic and LEDs share one supply, so the driver can switch the strip's supply from an MCU pin; Other generations (supported): Timing windows for the WS2812 and WS2812B generations, WS2812C and D, and SK6812 parts, or a Custom timing; Input level (not covered): DIN needs at least 2.7 V on the V5 sheet; the driver cannot see the level, so a level shifter is yours.",
+    "description": "Each card is one function of the WS2812B: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-circuit-direct": {
+    "title": "WS2812B: Direct data line",
+    "alt": "Schematic of the WS2812B direct data line: the chip with U2 MCU, J1 5 V supply, R1 resistor 330 Ω, C1 capacitor 100 nF; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit().",
+    "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
+    "profile": "detail",
+    "width": 984,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
   "chip-circuit-shifted": {
     "title": "WS2812B: Level shifter for a 3.3 V MCU, supply always on",
     "alt": "Schematic of the WS2812B level shifter for a 3.3 v mcu, supply always on: the chip with U2 MCU, U4 74HCT buffer, R1 resistor 330 Ω, C1 capacitor 100 nF, R2 resistor 10 kΩ; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit().",
@@ -38,6 +64,32 @@
       "inc/ws2812_rmt_gpio_interface.hpp"
     ]
   },
+  "chip-frame-pixel": {
+    "title": "WS2812B: Pixel data",
+    "alt": "Pixel data of the WS2812B, 24 bits, most significant bit first. DIN: G7 to G0 (bits 23 to 16), R7 to R0 (bits 15 to 8), B7 to B0 (bits 7 to 0).",
+    "description": "One Pixel data of the WS2812B, 24 bits in a row from the most significant (left, sent first) to the least significant (right). Each row is one kind of frame; each coloured box a field, with its first and last bit number under it.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-hero": {
+    "title": "WS2812B",
+    "alt": "Overview of the WS2812B, an addressable RGB LED with its control circuit in one 5050 package: pixels chain on a single data wire, each keeps the first 24 bits it receives for its three LEDs and passes the rest on to the next pixel. A MCU talks to it over one data wire; it drives Red, green and blue LEDs, then Next pixel. Headline figures: 800 kbit/s data rate on one wire; 24 bit per pixel: G, R, B, 8 bits each; 256 brightness levels per colour; > 280 µs low time that latches a frame.",
+    "description": "The WS2812B in the middle, drawn as its 5050 (WS2812B) package. On the left the MCU that runs the driver, joined to it by one data wire. To the right, what the chip drives, in the order the power flows. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
   "chip-outline": {
     "title": "WS2812B package, 5050 (WS2812B)",
     "alt": "Outline of the WS2812B in 5050 (WS2812B) drawn to scale from above: body 5.4 x 5.0 x 1.57 mm, 4 pins.",
@@ -57,6 +109,45 @@
     "description": "The WS2812B seen from the top, in its 5050 (WS2812B) package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.",
     "profile": "detail",
     "width": 939,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-wiring-direct": {
+    "title": "Wiring: Direct data line",
+    "alt": "Wiring of the WS2812B for the Direct data line: MCU RMT data to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU on the left, the WS2812B in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-wiring-shifted": {
+    "title": "Wiring: Level shifter for a 3.3 V MCU, supply always on",
+    "alt": "Wiring of the WS2812B for the Level shifter for a 3.3 V MCU, supply always on: . Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU on the left, the WS2812B in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/ws2812_rmt.hpp",
+      "inc/ws2812_rmt_gpio_interface.hpp"
+    ]
+  },
+  "chip-wiring-typical": {
+    "title": "Wiring: Typical application",
+    "alt": "Wiring of the WS2812B for the Typical application: . Supplies, grounds and the support parts are listed under the drawing.",
+    "description": "The MCU on the left, the WS2812B in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "profile": "overview",
+    "width": 1200,
     "source": "docs/hardware.yml",
     "sources": [
       "docs/hardware.yml",
