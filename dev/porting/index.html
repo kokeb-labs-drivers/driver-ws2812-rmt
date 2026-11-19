@@ -1740,7 +1740,7 @@ checks them with the <code>Ws2812RmtPort</code> concept and says in the compile 
 </tbody>
 </table>
 <h2 id="the-esp32-rmt-port">The ESP32 RMT port<a class="headerlink" href="#the-esp32-rmt-port" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/2790be043fce5c620281aafa5b2bc2e0880af829/examples/esp32/main/esp32_ws2812_rmt_port.hpp"><code>examples/esp32/main/esp32_ws2812_rmt_port.hpp</code></a> uses the RMT TX
+<p><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/55713649815f29e6684f147fab7468046176d491/examples/esp32/main/esp32_ws2812_rmt_port.hpp"><code>examples/esp32/main/esp32_ws2812_rmt_port.hpp</code></a> uses the RMT TX
 driver of ESP-IDF v5.x: one TX channel at 20 MHz (32 MHz on the ESP32-H2), a bytes encoder built from the waveform
 (<code>bit0</code> is high <code>t0h</code> then low <code>t0l</code>, <code>bit1</code> likewise, most significant bit first), the end-of-transmission level low,
 and a timed wait for the reset. It is written fresh from the public API.</p>
