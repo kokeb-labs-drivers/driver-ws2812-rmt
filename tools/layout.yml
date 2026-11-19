@@ -1,0 +1,3 @@
+header_only:
+  ws2812_rmt_functions: constants and inline or constexpr functions only, nothing to compile separately
+  ws2812_rmt_gamma: constants and inline or constexpr functions only, nothing to compile separately
