@@ -1710,9 +1710,9 @@ headers and the generated version header) and requires C++20, so your target doe
 <code>include/ws2812_rmt/src/ws2812_rmt.ipp</code>. The host CI installs the package and builds a consumer against it on every pull
 request (<a href="../testing/">Testing and CI</a>).</p>
 <h2 id="esp-idf">ESP-IDF<a class="headerlink" href="#esp-idf" title="Permanent link">&para;</a></h2>
-<p>Under ESP-IDF the root <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/CMakeLists.txt"><code>CMakeLists.txt</code></a> registers the repository itself as a component: with
+<p>Under ESP-IDF the root <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/CMakeLists.txt"><code>CMakeLists.txt</code></a> registers the repository itself as a component: with
 <code>ESP_PLATFORM</code> set it calls <code>idf_component_register()</code> from the same build settings, with the menu in
-<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/_config/Kconfig"><code>_config/Kconfig</code></a>. There is no wrapper to copy. ESP-IDF names a component after its folder,
+<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/_config/Kconfig"><code>_config/Kconfig</code></a>. There is no wrapper to copy. ESP-IDF names a component after its folder,
 so the name in your <code>REQUIRES</code> is the name of the folder the repository is in. Pick one of these:</p>
 <table>
 <thead>
@@ -1765,17 +1765,17 @@ publishing is chosen, the manifest is added at the root then.</p>
 <tbody>
 <tr>
 <td>Settings</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/cmake/ws2812_rmt_build_settings.cmake"><code>cmake/ws2812_rmt_build_settings.cmake</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/cmake/ws2812_rmt_build_settings.cmake"><code>cmake/ws2812_rmt_build_settings.cmake</code></a></td>
 <td>Target name, include directories, sources, version: the single source of truth</td>
 </tr>
 <tr>
 <td>Library</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/CMakeLists.txt"><code>CMakeLists.txt</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/CMakeLists.txt"><code>CMakeLists.txt</code></a></td>
 <td>INTERFACE target, alias, install rules and the package export, or the ESP-IDF component</td>
 </tr>
 <tr>
 <td>Tool configuration</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/_config/Doxyfile"><code>_config/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/_config/Doxyfile"><code>_config/</code></a></td>
 <td>Doxyfile, the docs site, Kconfig, clang-format, clang-tidy and the linters</td>
 </tr>
 </tbody>

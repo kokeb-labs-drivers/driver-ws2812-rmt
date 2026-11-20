@@ -1624,63 +1624,63 @@ builds, static analysis and measured quality gates, on every pull request.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_waveform.cpp"><code>tests/test_waveform.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_waveform.cpp"><code>tests/test_waveform.cpp</code></a></td>
 <td><code>ResolveWaveform()</code> at known rates, the edges of every window, the period, reset and gap-limit rules, <code>ResolveRmtRate()</code> (the divider arithmetic of the ESP32 port), a sweep of hostile rates</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_timing_models.cpp"><code>tests/test_timing_models.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_timing_models.cpp"><code>tests/test_timing_models.cpp</code></a></td>
 <td>Every profile equals the intersection of its documents; the nominals lie inside every document; two WS2812B generations share no waveform; default orders</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_model.cpp"><code>tests/test_model.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_model.cpp"><code>tests/test_model.cpp</code></a></td>
 <td>The model itself: its decoding, its windows, its latch, with hand-made symbol streams</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_encode.cpp"><code>tests/test_encode.cpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_colour.cpp"><code>test_colour.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_encode.cpp"><code>tests/test_encode.cpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_colour.cpp"><code>test_colour.cpp</code></a></td>
 <td>Byte packing for every colour order, <code>Scale8</code> over all 65 536 pairs, gamma, white, wheel</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_frame.cpp"><code>tests/test_frame.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_frame.cpp"><code>tests/test_frame.cpp</code></a></td>
 <td>Frame time, refresh rate, pixels per frame, the input-level function</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_chain.cpp"><code>tests/test_chain.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_chain.cpp"><code>tests/test_chain.cpp</code></a></td>
 <td>End to end: every variant, every document, every order, strips of 1 to 1024 pixels, a tick-rate error of 1000 ppm</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_lifecycle.cpp"><code>tests/test_lifecycle.cpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_errors.cpp"><code>test_errors.cpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_bus_faults.cpp"><code>test_bus_faults.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_lifecycle.cpp"><code>tests/test_lifecycle.cpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_errors.cpp"><code>test_errors.cpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_bus_faults.cpp"><code>test_bus_faults.cpp</code></a></td>
 <td>Start-up, every error value, failing and underrunning ports</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_edges.cpp"><code>tests/test_edges.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_edges.cpp"><code>tests/test_edges.cpp</code></a></td>
 <td>The boundaries a one-edit change would move: the reset wait at a rate that is not whole megahertz, the rounded-up tick time, the longer bit code in the frame time, the exclusive in-frame cap, the recovery after a failed <code>PowerOff()</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/esp32_stub/esp32_basic_test.cpp"><code>tests/esp32_stub/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/esp32_stub/esp32_basic_test.cpp"><code>tests/esp32_stub/</code></a></td>
 <td>The ESP32 port and both examples over stand-ins of the ESP-IDF headers: each example's <code>Start()</code> with the default pins reaches a shown frame, the channel settings, encoder, waits and recovery, the ESP32-H2 default rate</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/test_kconfig.cpp"><code>tests/test_kconfig.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/test_kconfig.cpp"><code>tests/test_kconfig.cpp</code></a></td>
 <td>The menuconfig values and their defaults</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/mock_ws2812_rmt.hpp"><code>tests/mock_ws2812_rmt.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/mock_ws2812_rmt.hpp"><code>tests/mock_ws2812_rmt.hpp</code></a></td>
 <td>The model: the documents' windows, a pixel chain that latches, and the fake ports</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/fuzz/fuzz_ws2812_rmt.cpp"><code>tests/fuzz/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/fuzz/fuzz_ws2812_rmt.cpp"><code>tests/fuzz/</code></a></td>
 <td>The fuzz target; CTest replays its corpus (<code>ws2812_rmt_fuzz_ws2812_rmt_corpus</code>), see below</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/compile_fail/not_a_port.cpp"><code>tests/compile_fail/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/compile_fail/not_a_port.cpp"><code>tests/compile_fail/</code></a></td>
 <td>Ports and configurations that must not compile</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/docs/quickstart.cpp"><code>tests/docs/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/docs/quickstart.cpp"><code>tests/docs/</code></a></td>
 <td>Every code block of the site, compiled</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
 <td><code>find_package(ws2812_rmt)</code> from an installed package</td>
 </tr>
 </tbody>
@@ -1708,7 +1708,7 @@ duration against the window, latches a frame when a low exceeds the reset, and r
 too many bits. So a transcription error in either table, a waveform outside a window, or a missing reset fails a test,
 and green tests cannot come from one author's single reading of a datasheet.</p>
 <h2 id="fuzz-tests">Fuzz tests<a class="headerlink" href="#fuzz-tests" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/fuzz/fuzz_ws2812_rmt.cpp"><code>tests/fuzz/fuzz_ws2812_rmt.cpp</code></a> lets libFuzzer choose a configuration (any
+<p><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/tests/fuzz/fuzz_ws2812_rmt.cpp"><code>tests/fuzz/fuzz_ws2812_rmt.cpp</code></a> lets libFuzzer choose a configuration (any
 variant, <code>Custom</code> with arbitrary windows, any order, brightness, gamma, reset), the port (any tick rate including 0 and
 2^32 - 1, failing hooks, with or without the optional hooks) and up to 48 driver calls. After every call it checks the
 driver's promises and aborts, naming the line, when one breaks:</p>
@@ -1735,14 +1735,14 @@ driver's promises and aborts, naming the line, when one breaks:</p>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>./build-fuzz/tests/fuzz/fuzz_ws2812_rmt<span class="w"> </span>-max_total_time<span class="o">=</span><span class="m">120</span><span class="w"> </span>tests/fuzz/corpus/fuzz_ws2812_rmt
 </span></code></pre></div>
 <p>The same file also builds without libFuzzer as <code>fuzz_replay_fuzz_ws2812_rmt</code>, and CTest replays every input in
-<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/tree/4a26aac7c11a8177f85f7573ede84267f396a6b1/tests/fuzz/corpus/fuzz_ws2812_rmt"><code>tests/fuzz/corpus/fuzz_ws2812_rmt/</code></a> on GCC and Clang
+<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/tree/129ee4b7275caf4e1569ff190daad96571086b96/tests/fuzz/corpus/fuzz_ws2812_rmt"><code>tests/fuzz/corpus/fuzz_ws2812_rmt/</code></a> on GCC and Clang
 (<code>ws2812_rmt_fuzz_ws2812_rmt_corpus</code>): the seeds, and every input that ever broke a promise (name it <code>regress-*</code>), so a
 fixed bug stays fixed. CI fuzzes for 120 s on every pull request, from the seeds plus a corpus it keeps between runs
 (job <code>Host quality / fuzz</code>).</p>
 <h2 id="quality-gates">Quality gates<a class="headerlink" href="#quality-gates" title="Permanent link">&para;</a></h2>
 <p>The <code>Host quality</code> job measures the library code, <code>inc/</code> and <code>src/</code> only (tests and examples are left out), and
 fails when a value is over the limits of this repository's assurance level, <code>high</code> (set in
-<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
+<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
 <table>
 <thead>
 <tr>
@@ -1802,10 +1802,10 @@ fails when a value is over the limits of this repository's assurance level, <cod
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build-san<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="w"> </span>--test-dir<span class="w"> </span>build-san<span class="w"> </span>--output-on-failure
 </span></code></pre></div>
 <p>The fuzz gate runs locally as shown in <a href="#fuzz-tests">Fuzz tests</a>.</p>
-<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, CERT, clang-analyzer,
+<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, CERT, clang-analyzer,
 cppcoreguidelines, modernize, performance, portability and readability, each disabled check with its reason) and
 cppcheck (strict) run in the <code>C++ lint</code> and <code>Repository checks</code> jobs and fail on any finding.</p>
-<p>The <code>MISRA</code> job (<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/.github/workflows/ci-misra.yml"><code>ci-misra.yml</code></a>) runs the shared <code>ru-misra</code> workflow of
+<p>The <code>MISRA</code> job (<a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/.github/workflows/ci-misra.yml"><code>ci-misra.yml</code></a>) runs the shared <code>ru-misra</code> workflow of
 ci-tools at level <code>high</code>: it traces a host build and the Cortex-M build (<code>ws2812_rmt_optimised_build</code>) of every
 translation unit, checks them against MISRA C++:2023 and the handbook's C++20 profile (the CodeQL coding-standards
 and profile packs, plus the validated clang-tidy and cppcheck checks), and reports each finding against the
@@ -1814,7 +1814,7 @@ its deviation on the line before it (<code>// codeql::misra_deviation_next_line(
 of <code>inc/ws2812_rmt.hpp</code>). Until the repository is public the job runs with <code>open_source_prerelease: true</code>, the
 declaration that the code is released under the licence in <code>LICENSE</code> and is to be published.</p>
 <h2 id="ci-workflows">CI workflows<a class="headerlink" href="#ci-workflows" title="Permanent link">&para;</a></h2>
-<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/4a26aac7c11a8177f85f7573ede84267f396a6b1/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
+<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
 the <code>CI gate</code> job, the single required check (<code>CI gate / gate</code>).</p>
 <table>
 <thead>
