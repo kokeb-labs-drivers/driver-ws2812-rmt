@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://kokeb-labs-drivers.github.io/driver-ws2812-rmt/latest/hardware/">
       
       
-        <link rel="prev" href="../examples/">
+        <link rel="prev" href="../platforms/">
       
       
-        <link rel="next" href="../installation/">
+        <link rel="next" href="../bus/">
       
       
         
@@ -102,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for single-wire addressable RGB and RGBW LEDs (WS2812, SK6812 and compatible) over a timed bit stream">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-ws2812-rmt/latest/hardware/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -338,362 +272,23 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../api-guide/" class="md-tabs__link">
-        
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../quickstart/" class="md-tabs__link">
+          
   
   
     
   
-  API guide
+  Get started
 
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../api-reference/" class="md-tabs__link">
-        
-  
-  
+        </a>
+      </li>
     
-  
-  API reference
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../architecture/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Architecture
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../changelog/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Changelog
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../colour/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Colour
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../configuration/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Configuration
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../contract/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Contract
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../datasheet/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Datasheet map
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../examples/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Examples
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Hardware
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../installation/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Installation
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../limitations/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Limitations
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../platforms/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Platforms
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../porting/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Porting
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../quickstart/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Quickstart
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../repo-setup/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Repository setup
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../testing/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Testing and CI
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../timing/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Timing
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../troubleshooting/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Troubleshooting
-
-      </a>
-    </li>
   
 
       
@@ -705,13 +300,57 @@
     
     
       <li class="md-tabs__item">
-        <a href="../diagrams/" class="md-tabs__link">
+        <a href="../architecture/" class="md-tabs__link">
           
   
   
     
   
-  Diagrams
+  Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-reference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
 
         </a>
       </li>
@@ -796,17 +435,88 @@
       
   
   
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../api-guide/" class="md-nav__link">
+      <a href="../quickstart/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API guide
+    Quickstart
   
 
     
@@ -818,22 +528,23 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../api-reference/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    API reference
+    Installation
   
 
     
@@ -845,22 +556,23 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
+      <a href="../platforms/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Architecture
+    Platforms
   
 
     
@@ -872,171 +584,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../changelog/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Changelog
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../colour/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Colour
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Configuration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../contract/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Contract
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../datasheet/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Datasheet map
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Examples
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
     
@@ -1174,22 +725,23 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../bus/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Installation
+    On the bus
   
 
     
@@ -1201,219 +753,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../limitations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Limitations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../platforms/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Platforms
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../porting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Porting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../quickstart/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Quickstart
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../repo-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Repository setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../testing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Testing and CI
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../timing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Timing
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1428,7 +772,13 @@
     
       
         
-          
+      
+        
+      
+        
+      
+        
+      
         
       
     
@@ -1451,14 +801,148 @@
   
   
   
-    <a href="../diagrams/" class="md-nav__link">
+    <a href="../architecture/" class="md-nav__link">
       
   
   
   <span class="md-ellipsis">
     
   
-    Diagrams
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../api-guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../api-reference/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
   
 
     
@@ -1607,6 +1091,8 @@ same four signals; the pin order and the levels differ per part.</p>
 <li>Supply range and logical input voltage: Worldsemi WS2812B-V5 V5.0, Absolute Maximum Ratings, p. 2</li>
 <li>Pins and package: four pin 5050: Worldsemi WS2812B-V5 V5.0, PIN Configuration, p. 2</li>
 <li>Propagation delay DIN to DOUT: Worldsemi WS2812B-V5 V5.0, Switching Characteristics, p. 3</li>
+<li>Typical application circuit of the V5: shared VDD and GND: Worldsemi WS2812B-V5 V5.0, Typical Application Circuit,
+  p. 4</li>
 <li>Input level 0.63 x VDD (later V5 family sheets): Worldsemi WS2812B-V5 V6.1, Electrical Characteristics, p. 3</li>
 <li>Input levels of the SK6812: Opsco SK6812RGBW Rev. 01, Electrical Characteristics, p. 4</li>
 </ul>
@@ -1676,7 +1162,7 @@ strip. The driver does not depend on the pin order: DIN is whatever pin your por
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The WS2812B seen from the top, in its 5050 (WS2812B) package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <!-- generated: chip-pins -->
 <p>5050 (WS2812B), 4 pins (PIN Configuration, p. 2).</p>
@@ -1709,7 +1195,7 @@ strip. The driver does not depend on the pin order: DIN is whatever pin your por
 <td>Reshaped data to the next pixel (300 ns propagation at most)</td>
 <td>-</td>
 <td>Leave open on the last pixel</td>
-<td>Data Transmission Method, p. 4</td>
+<td>Switching Characteristics, p. 3</td>
 </tr>
 <tr>
 <td>3</td>
@@ -1863,7 +1349,7 @@ the supply you have. The quiescent current is small (about 0.6 mA for V5, 1 uA f
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <figure class="kb-figure">
 <img src="../diagrams/chip-circuit-shifted.svg#only-light" alt="Schematic of the WS2812B level shifter for a 3.3 v mcu, supply always on: the chip with U2 MCU, U4 74HCT buffer, R1 resistor 330 Ω, C1 capacitor 100 nF, R2 resistor 10 kΩ; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit()." width="888" height="780" loading="lazy"><img src="../diagrams/chip-circuit-shifted.dark.svg#only-dark" alt="Schematic of the WS2812B level shifter for a 3.3 v mcu, supply always on: the chip with U2 MCU, U4 74HCT buffer, R1 resistor 330 Ω, C1 capacitor 100 nF, R2 resistor 10 kΩ; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit()." width="888" height="780" loading="lazy">
@@ -1873,7 +1359,7 @@ the supply you have. The quiescent current is small (about 0.6 mA for V5, 1 uA f
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <h2 id="package-and-blocks">Package and blocks<a class="headerlink" href="#package-and-blocks" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1884,7 +1370,7 @@ the supply you have. The quiescent current is small (about 0.6 mA for V5, 1 uA f
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The WS2812B package seen from the top and, when the height is known, from the side, drawn to scale: 5.4 x 5.0 x 1.57 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <figure class="kb-figure">
 <img src="../diagrams/chip-blocks.svg#only-light" alt="Block diagram of the WS2812B: its function blocks, how they connect and which package pins reach each block." width="1200" height="543" loading="lazy"><img src="../diagrams/chip-blocks.dark.svg#only-dark" alt="Block diagram of the WS2812B: its function blocks, how they connect and which package pins reach each block." width="1200" height="543" loading="lazy">
@@ -1894,7 +1380,7 @@ the supply you have. The quiescent current is small (about 0.6 mA for V5, 1 uA f
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The WS2812B's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <p>The data path inside each pixel is one chain: input buffer, a shift register that keeps the first 24 (or 32) bits it
 receives, a latch that takes them when a reset low arrives, constant-current PWM drivers with 256 levels per channel,
@@ -2066,7 +1552,7 @@ of the driver is in the datasheet: <a href="../datasheet/">Datasheet map</a>.</p
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../examples/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Examples">
+          <a href="../platforms/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Platforms">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2076,20 +1562,20 @@ of the driver is in the datasheet: <a href="../datasheet/">Datasheet map</a>.</p
                 Previous
               </span>
               <div class="md-ellipsis">
-                Examples
+                Platforms
               </div>
             </div>
           </a>
         
         
           
-          <a href="../installation/" class="md-footer__link md-footer__link--next" aria-label="Next: Installation">
+          <a href="../bus/" class="md-footer__link md-footer__link--next" aria-label="Next: On the bus">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Installation
+                On the bus
               </div>
             </div>
             <div class="md-footer__button md-icon">

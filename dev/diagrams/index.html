@@ -13,8 +13,10 @@
         <link rel="canonical" href="https://kokeb-labs-drivers.github.io/driver-ws2812-rmt/latest/diagrams/">
       
       
-        <link rel="prev" href="../troubleshooting/">
+        <link rel="prev" href="../testing/">
       
+      
+        <link rel="next" href="../changelog/">
       
       
         
@@ -100,72 +102,6 @@
   <meta property="og:description" content="C++20 driver for single-wire addressable RGB and RGBW LEDs (WS2812, SK6812 and compatible) over a timed bit stream">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-ws2812-rmt/latest/diagrams/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -337,17 +273,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../api-guide/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../quickstart/" class="md-tabs__link">
+          
   
   
     
   
-  API guide
+  Get started
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -356,17 +295,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../api-reference/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/" class="md-tabs__link">
+          
   
   
     
   
-  API reference
+  Concepts
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -375,321 +317,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../architecture/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-guide/" class="md-tabs__link">
+          
   
   
     
   
-  Architecture
+  Guides
 
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../changelog/" class="md-tabs__link">
-        
-  
-  
+        </a>
+      </li>
     
-  
-  Changelog
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../colour/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Colour
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../configuration/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Configuration
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../contract/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Contract
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../datasheet/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Datasheet map
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../examples/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Examples
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../hardware/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Hardware
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../installation/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Installation
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../limitations/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Limitations
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../platforms/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Platforms
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../porting/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Porting
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../quickstart/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Quickstart
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../repo-setup/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Repository setup
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../testing/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Testing and CI
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../timing/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Timing
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../troubleshooting/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Troubleshooting
-
-      </a>
-    </li>
   
 
       
@@ -703,13 +344,13 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../api-reference/" class="md-tabs__link">
           
   
   
     
   
-  Diagrams
+  Reference
 
         </a>
       </li>
@@ -796,15 +437,47 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../api-guide/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../quickstart/" class="md-nav__link">
+      
   
   
   <span class="md-ellipsis">
     
   
-    API guide
+    Get started
   
 
     
@@ -812,13 +485,231 @@
   
   
 
-      </a>
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
     </li>
   
 
     
       
       
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../architecture/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../api-guide/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
   
@@ -843,144 +734,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../changelog/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Changelog
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../colour/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Colour
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Configuration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../contract/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Contract
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -1005,225 +762,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Examples
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../hardware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Hardware
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Installation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../limitations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Limitations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../platforms/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Platforms
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../porting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Porting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../quickstart/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Quickstart
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../repo-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Repository setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -1248,106 +790,25 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../timing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Timing
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-    
-    
-    
-      
-        
-        
-      
-      
-        
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" checked>
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
               
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
   
   
   <span class="md-ellipsis">
     
   
-    Diagrams
+    Changelog
   
 
     
@@ -1355,21 +816,38 @@
   
   
 
-            </a>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_21">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Diagrams
+      </a>
+    </li>
   
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repo-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -1417,6 +895,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-the-ws2812b-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the WS2812B does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ws2812b-direct-data-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WS2812B: Direct data line
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ws2812b-level-shifter-for-a-33-v-mcu-supply-always-on" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1432,6 +932,28 @@
     <span class="md-ellipsis">
       
         WS2812B: Typical application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ws2812b-pixel-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WS2812B: Pixel data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ws2812b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WS2812B
       
     </span>
   </a>
@@ -1461,10 +983,65 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wiring-direct-data-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: Direct data line
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-level-shifter-for-a-33-v-mcu-supply-always-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: Level shifter for a 3.3 V MCU, supply always on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-typical-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wiring: Typical application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-layers-one-of-them-yours" class="md-nav__link">
     <span class="md-ellipsis">
       
         The layers, one of them yours
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pixels-in-a-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pixels in a chain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-wire-two-codes-and-the-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One wire, two codes and the reset
       
     </span>
   </a>
@@ -1511,14 +1088,50 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The WS2812B's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+</ul>
+<h2 id="what-the-ws2812b-does">What the WS2812B does<a class="headerlink" href="#what-the-ws2812b-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-capabilities.svg#only-light" alt="Capability map of the WS2812B: 24-bit pixel colour (supported): Stores the colours and sends each pixel as G, R, B, high bit first; the colour order is a Config field; Cascaded pixels (supported): Sends a whole strip in one frame: each pixel keeps its 24 bits and forwards the rest; Bit timing (supported): Turns the datasheet pulse windows into ticks of the rate your port really runs at, or refuses; Frame latch (supported): Ends a frame with a low longer than the reset time (above 280 µs on the V5 sheet) so the pixels latch; 256 brightness levels (supported): Scales the colours before sending, with an optional gamma table; the chip itself takes 8 bits per colour; Shared power source (supported): Logic and LEDs share one supply, so the driver can switch the strip&#x27;s supply from an MCU pin; Other generations (supported): Timing windows for the WS2812 and WS2812B generations, WS2812C and D, and SK6812 parts, or a Custom timing; Input level (not covered): DIN needs at least 2.7 V on the V5 sheet; the driver cannot see the level, so a level shifter is yours." width="1200" height="924" loading="lazy"><img src="chip-capabilities.dark.svg#only-dark" alt="Capability map of the WS2812B: 24-bit pixel colour (supported): Stores the colours and sends each pixel as G, R, B, high bit first; the colour order is a Config field; Cascaded pixels (supported): Sends a whole strip in one frame: each pixel keeps its 24 bits and forwards the rest; Bit timing (supported): Turns the datasheet pulse windows into ticks of the rate your port really runs at, or refuses; Frame latch (supported): Ends a frame with a low longer than the reset time (above 280 µs on the V5 sheet) so the pixels latch; 256 brightness levels (supported): Scales the colours before sending, with an optional gamma table; the chip itself takes 8 bits per colour; Shared power source (supported): Logic and LEDs share one supply, so the driver can switch the strip&#x27;s supply from an MCU pin; Other generations (supported): Timing windows for the WS2812 and WS2812B generations, WS2812C and D, and SK6812 parts, or a Custom timing; Input level (not covered): DIN needs at least 2.7 V on the V5 sheet; the driver cannot see the level, so a level shifter is yours." width="1200" height="924" loading="lazy">
+<figcaption>What the WS2812B does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the WS2812B: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+</ul>
+<h2 id="ws2812b-direct-data-line">WS2812B: Direct data line<a class="headerlink" href="#ws2812b-direct-data-line" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-circuit-direct.svg#only-light" alt="Schematic of the WS2812B direct data line: the chip with U2 MCU, J1 5 V supply, R1 resistor 330 Ω, C1 capacitor 100 nF; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit()." width="984" height="569" loading="lazy"><img src="chip-circuit-direct.dark.svg#only-dark" alt="Schematic of the WS2812B direct data line: the chip with U2 MCU, J1 5 V supply, R1 resistor 330 Ω, C1 capacitor 100 nF; the MCU wires carry the port hooks GpioSet(CtrlPin::Power), Transmit()." width="984" height="569" loading="lazy">
+<figcaption>WS2812B: Direct data line</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
 </ul>
 <h2 id="ws2812b-level-shifter-for-a-33-v-mcu-supply-always-on">WS2812B: Level shifter for a 3.3 V MCU, supply always on<a class="headerlink" href="#ws2812b-level-shifter-for-a-33-v-mcu-supply-always-on" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1529,14 +1142,14 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
 </ul>
 <h2 id="ws2812b-typical-application">WS2812B: Typical application<a class="headerlink" href="#ws2812b-typical-application" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1547,14 +1160,50 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+</ul>
+<h2 id="ws2812b-pixel-data">WS2812B: Pixel data<a class="headerlink" href="#ws2812b-pixel-data" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-frame-pixel.svg#only-light" alt="Pixel data of the WS2812B, 24 bits, most significant bit first. DIN: G7 to G0 (bits 23 to 16), R7 to R0 (bits 15 to 8), B7 to B0 (bits 7 to 0)." width="1200" height="328" loading="lazy"><img src="chip-frame-pixel.dark.svg#only-dark" alt="Pixel data of the WS2812B, 24 bits, most significant bit first. DIN: G7 to G0 (bits 23 to 16), R7 to R0 (bits 15 to 8), B7 to B0 (bits 7 to 0)." width="1200" height="328" loading="lazy">
+<figcaption>WS2812B: Pixel data</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>One Pixel data of the WS2812B, 24 bits in a row from the most significant (left, sent first) to the least significant (right). Each row is one kind of frame; each coloured box a field, with its first and last bit number under it.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+</ul>
+<h2 id="ws2812b">WS2812B<a class="headerlink" href="#ws2812b" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-hero.svg#only-light" alt="Overview of the WS2812B, an addressable RGB LED with its control circuit in one 5050 package: pixels chain on a single data wire, each keeps the first 24 bits it receives for its three LEDs and passes the rest on to the next pixel. A MCU talks to it over one data wire; it drives Red, green and blue LEDs, then Next pixel. Headline figures: 800 kbit/s data rate on one wire; 24 bit per pixel: G, R, B, 8 bits each; 256 brightness levels per colour; &gt; 280 µs low time that latches a frame." width="1200" height="613" loading="lazy"><img src="chip-hero.dark.svg#only-dark" alt="Overview of the WS2812B, an addressable RGB LED with its control circuit in one 5050 package: pixels chain on a single data wire, each keeps the first 24 bits it receives for its three LEDs and passes the rest on to the next pixel. A MCU talks to it over one data wire; it drives Red, green and blue LEDs, then Next pixel. Headline figures: 800 kbit/s data rate on one wire; 24 bit per pixel: G, R, B, 8 bits each; 256 brightness levels per colour; &gt; 280 µs low time that latches a frame." width="1200" height="613" loading="lazy">
+<figcaption>WS2812B</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The WS2812B in the middle, drawn as its 5050 (WS2812B) package. On the left the MCU that runs the driver, joined to it by one data wire. To the right, what the chip drives, in the order the power flows. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
 </ul>
 <h2 id="ws2812b-package-5050-ws2812b">WS2812B package, 5050 (WS2812B)<a class="headerlink" href="#ws2812b-package-5050-ws2812b" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1565,14 +1214,14 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The WS2812B package seen from the top and, when the height is known, from the side, drawn to scale: 5.4 x 5.0 x 1.57 mm. The arrows carry the datasheet's dimensions, the dot marks pin 1 and the pads are numbered counter-clockwise from it, coloured by the pin's electrical type (legend below). Pads sit centred on each side, evenly spaced; the datasheet's land pattern is the reference for a board.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
 </ul>
 <h2 id="ws2812b-pinout-5050-ws2812b">WS2812B pinout, 5050 (WS2812B)<a class="headerlink" href="#ws2812b-pinout-5050-ws2812b" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1583,14 +1232,68 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>The WS2812B seen from the top, in its 5050 (WS2812B) package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
-<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
 </details>
 <p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
 <p>Drawn from:</p>
 <ul>
 <li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
-<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-direct-data-line">Wiring: Direct data line<a class="headerlink" href="#wiring-direct-data-line" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-direct.svg#only-light" alt="Wiring of the WS2812B for the Direct data line: MCU RMT data to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="634" loading="lazy"><img src="chip-wiring-direct.dark.svg#only-dark" alt="Wiring of the WS2812B for the Direct data line: MCU RMT data to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="634" loading="lazy">
+<figcaption>Wiring: Direct data line</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the WS2812B in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-level-shifter-for-a-33-v-mcu-supply-always-on">Wiring: Level shifter for a 3.3 V MCU, supply always on<a class="headerlink" href="#wiring-level-shifter-for-a-33-v-mcu-supply-always-on" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-shifted.svg#only-light" alt="Wiring of the WS2812B for the Level shifter for a 3.3 V MCU, supply always on: MCU RMT data to 74HCT buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="719" loading="lazy"><img src="chip-wiring-shifted.dark.svg#only-dark" alt="Wiring of the WS2812B for the Level shifter for a 3.3 V MCU, supply always on: MCU RMT data to 74HCT buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="719" loading="lazy">
+<figcaption>Wiring: Level shifter for a 3.3 V MCU, supply always on</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the WS2812B on the right of the parts between them (74HCT buffer). Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+</ul>
+<h2 id="wiring-typical-application">Wiring: Typical application<a class="headerlink" href="#wiring-typical-application" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="chip-wiring-typical.svg#only-light" alt="Wiring of the WS2812B for the Typical application: MCU GPIO (supply enable) to Load switch EN (GpioSet(CtrlPin::Power)); Load switch OUT to VDD; MCU RMT data to 74HCT buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="843" loading="lazy"><img src="chip-wiring-typical.dark.svg#only-dark" alt="Wiring of the WS2812B for the Typical application: MCU GPIO (supply enable) to Load switch EN (GpioSet(CtrlPin::Power)); Load switch OUT to VDD; MCU RMT data to 74HCT buffer A; 74HCT buffer Y to DIN through R1 330 Ω (Transmit()). Supplies, grounds and the support parts are listed under the drawing." width="1200" height="843" loading="lazy">
+<figcaption>Wiring: Typical application</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the WS2812B on the right of the parts between them (Load switch, 74HCT buffer). Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="../hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../hardware.yml"><code>docs/hardware.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../hardware.yml"><code>docs/hardware.yml</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
 </ul>
 <h2 id="the-layers-one-of-them-yours">The layers, one of them yours<a class="headerlink" href="#the-layers-one-of-them-yours" title="Permanent link">&para;</a></h2>
 <figure class="kb-figure">
@@ -1601,13 +1304,45 @@ committed figure no longer matches the code. Each figure below lists the files i
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a> <code>GpioInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a> <code>GpioInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
-<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
+<p>Figure module: <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a></p>
 <p>Drawn from:</p>
 <ul>
-<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
-<li><code>GpioInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/129ee4b7275caf4e1569ff190daad96571086b96/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+<li><code>public calls</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt.hpp"><code>inc/ws2812_rmt.hpp</code></a></li>
+<li><code>GpioInterface</code> in <a href="https://github.com/kokeb-labs-drivers/driver-ws2812-rmt/blob/c41a7c6868f210a13bbf7cf6887834a6c851fb72/inc/ws2812_rmt_gpio_interface.hpp"><code>inc/ws2812_rmt_gpio_interface.hpp</code></a></li>
+</ul>
+<h2 id="pixels-in-a-chain">Pixels in a chain<a class="headerlink" href="#pixels-in-a-chain" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="single-wire-chain.svg#only-light" alt="Chain of WS2812B pixels on one data wire: the MCU drives DIN of the first pixel, each DOUT drives the next DIN, and every pixel shares the VDD and VSS supply rails." width="640" height="823" loading="lazy"><img src="single-wire-chain.dark.svg#only-dark" alt="Chain of WS2812B pixels on one data wire: the MCU drives DIN of the first pixel, each DOUT drives the next DIN, and every pixel shares the VDD and VSS supply rails." width="640" height="823" loading="lazy">
+<figcaption>Pixels in a chain</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on top drives its data pin into DIN of pixel 1; its DOUT feeds the next pixel and so on to pixel N, whose DOUT is left open. VDD and VSS are rails every pixel shares, as in the typical application circuit; the MCU joins VSS only.</p>
+<p>Drawn from: <a href="../model/single-wire-chain.topology.yml"><code>docs/model/single-wire-chain.topology.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../model/single-wire-chain.topology.yml"><code>docs/model/single-wire-chain.topology.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../model/single-wire-chain.topology.yml"><code>docs/model/single-wire-chain.topology.yml</code></a></li>
+</ul>
+<h2 id="one-wire-two-codes-and-the-reset">One wire, two codes and the reset<a class="headerlink" href="#one-wire-two-codes-and-the-reset" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="single-wire-timing.svg#only-light" alt="Single-wire timing of the WS2812B V5: a 0 code is a short high and a long low, a 1 code a long high and a long low, and a low longer than the reset time latches the frame before the next one starts." width="640" height="930" loading="lazy"><img src="single-wire-timing.dark.svg#only-dark" alt="Single-wire timing of the WS2812B V5: a 0 code is a short high and a long low, a 1 code a long high and a long low, and a low longer than the reset time latches the frame before the next one starts." width="640" height="930" loading="lazy">
+<figcaption>One wire, two codes and the reset</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The lane is DIN, left to right in time. The line idles low; a 0 code is high for T0H then low for T0L, a 1 code high for T1H then low for T1L, and the remaining bits of the frame are left out. After the last bit DIN stays low for longer than RES, the pixels latch their colours and the next high starts a new frame.</p>
+<p>Drawn from: <a href="../model/single-wire-timing.timing.yml"><code>docs/model/single-wire-timing.timing.yml</code></a>.</p>
+</details>
+<p>Hardware description: <a href="../model/single-wire-timing.timing.yml"><code>docs/model/single-wire-timing.timing.yml</code></a></p>
+<p>Drawn from:</p>
+<ul>
+<li><a href="../model/single-wire-timing.timing.yml"><code>docs/model/single-wire-timing.timing.yml</code></a></li>
 </ul>
 
 
@@ -1646,7 +1381,7 @@ committed figure no longer matches the code. Each figure below lists the files i
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../troubleshooting/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Troubleshooting">
+          <a href="../testing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Testing and CI">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1656,11 +1391,27 @@ committed figure no longer matches the code. Each figure below lists the files i
                 Previous
               </span>
               <div class="md-ellipsis">
-                Troubleshooting
+                Testing and CI
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="../changelog/" class="md-footer__link md-footer__link--next" aria-label="Next: Changelog">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Changelog
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     

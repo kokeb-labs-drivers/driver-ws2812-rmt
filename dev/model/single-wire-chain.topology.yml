@@ -1,0 +1,31 @@
+---
+# Model of the figure 'single-wire-chain'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# Every limit cites the section and page it comes from (refs in docs/hardware.yml), from the WS2812B V5 data sheet.
+kind: topology
+id: single-wire-chain
+title: Pixels in a chain
+kicker: Several pixels
+alt: >-
+  Chain of WS2812B pixels on one data wire: the MCU drives DIN of the first pixel, each DOUT drives the next DIN,
+  and every pixel shares the VDD and VSS supply rails.
+reads: >-
+  The MCU on top drives its data pin into DIN of pixel 1; its DOUT feeds the next pixel and so on to pixel N, whose
+  DOUT is left open. VDD and VSS are rails every pixel shares, as in the typical application circuit; the MCU joins
+  VSS only.
+print: landscape
+sources:
+  - docs/model/single-wire-chain.topology.yml
+style: chain
+host: {label: MCU, detail: RMT channel on one GPIO}
+nodes:
+  - {label: Pixel 1, detail: takes the first 24 bits, ref: cascade}
+  - {more: true, label: "…"}
+  - {label: Pixel N, detail: takes the last 24 bits, ref: cascade}
+chain: {in: DIN, out: DOUT, host_out: GPIO}
+shared: [VDD, VSS]
+host_shared: [VSS]
+facts:
+  - {text: "The MCU sends D1; each pixel reshapes the rest and passes it on as D2, D3, D4", ref: cascmethod}
+  - {text: "Each pixel keeps the first 24 bits it receives and passes the rest on", ref: cascade}
+  - {text: "DIN to DOUT delay at most 300 ns", ref: switching}
+  - {text: "No extra filter capacitor needed in the PCB layout", ref: appv5}
