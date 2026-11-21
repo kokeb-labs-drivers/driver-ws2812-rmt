@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="328" viewBox="0 0 1200 328" role="img" aria-labelledby="chip-frame-pixel-title chip-frame-pixel-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-frame-pixel-title">WS2812B: Pixel data</title>
+<desc id="chip-frame-pixel-desc">Pixel data of the WS2812B, 24 bits, most significant bit first. DIN: G7 to G0 (bits 23 to 16), R7 to R0 (bits 15 to 8), B7 to B0 (bits 7 to 0).</desc>
+<rect x="0.5" y="0.5" width="1199" height="327" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">ON THE BUS</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">WS2812B: Pixel data</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">The first pixel keeps the first 24 bits on DIN, sent in the order G, R, B, high bit first, and forwards every bit after them on</text>
+<text x="32" y="141.5" font-size="18" fill="#566070">DOUT. 24 bits, sent most significant bit first. Datasheet: Composition of 24bit Data, p. 4.</text>
+<rect x="32" y="157.5" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="210" y="209.5" width="310" height="46" rx="6" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<rect x="520" y="209.5" width="310" height="46" rx="6" fill="#FFF5E3" stroke="#C26A05" stroke-width="1.4"/>
+<rect x="830" y="209.5" width="310" height="46" rx="6" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="210" y="191.5" font-size="16" fill="#566070">MSB, sent first</text>
+<text x="1140" y="191.5" font-size="16" text-anchor="end" fill="#566070">LSB, sent last</text>
+<text x="32" y="230.5" font-size="20" font-weight="700" fill="#0E1726">DIN</text>
+<text x="32" y="250.5" font-size="16" fill="#566070">first 24 bits</text>
+<text x="365" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#14532D">G7 to G0</text>
+<text x="212" y="275.5" font-size="16" fill="#566070">23</text>
+<text x="518" y="275.5" font-size="16" text-anchor="end" fill="#566070">16</text>
+<text x="675" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#8A3C0B">R7 to R0</text>
+<text x="522" y="275.5" font-size="16" fill="#566070">15</text>
+<text x="828" y="275.5" font-size="16" text-anchor="end" fill="#566070">8</text>
+<text x="985" y="238.6" font-size="17" font-weight="600" text-anchor="middle" fill="#1E429F">B7 to B0</text>
+<text x="832" y="275.5" font-size="16" fill="#566070">7</text>
+<text x="1138" y="275.5" font-size="16" text-anchor="end" fill="#566070">0</text>
+</svg>

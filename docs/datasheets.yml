@@ -282,7 +282,7 @@ topics:
     section: "Data Transfer Time"
     page: 3
     driver: "`Variant::Ws2812bV5`, `ProfileTiming()`, `ResolveWaveform()`"
-    docs: [timing, configuration]
+    docs: [timing, configuration, bus]
   - topic: "Same windows, V6 edition"
     doc: b-v6
     section: "Data Transfer Time"
@@ -342,7 +342,7 @@ topics:
     section: "Data Transfer Time (RES)"
     page: 3
     driver: "`Timing::reset_min_ns`, `Config::reset_us`, `kResetMarginUs`"
-    docs: [timing, configuration, troubleshooting]
+    docs: [timing, configuration, troubleshooting, bus]
   - topic: "Reset low time of the SK6812"
     doc: sk-01
     section: "Data transfer time (Trst)"
@@ -372,7 +372,19 @@ topics:
     section: "Data Transmission Method"
     page: 4
     driver: "`Ws2812Rmt::Show()`, `MaxPixelsAtRate()`"
-    docs: [api-guide, timing]
+    docs: [api-guide, timing, bus]
+  - topic: "Cascade method: D1 from the MCU, DIN to DO pixel by pixel"
+    doc: b-v5
+    section: "Cascade Method"
+    page: 3
+    driver: "`Ws2812Rmt::Show()`"
+    docs: [bus]
+  - topic: "Typical application circuit of the V5: shared VDD and GND"
+    doc: b-v5
+    section: "Typical Application Circuit"
+    page: 4
+    driver: "`CtrlPin::Power`"
+    docs: [bus, hardware]
   - topic: "Input levels VIH and VIL"
     doc: b-v5
     section: "Electrical Characteristics"
@@ -402,7 +414,7 @@ topics:
     section: "Switching Characteristics"
     page: 3
     driver: "`FrameTimeNs()`"
-    docs: [timing, hardware]
+    docs: [timing, hardware, bus]
   - topic: "Pins and package: four pin 5050"
     doc: b-v5
     section: "PIN Configuration"

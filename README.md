@@ -1,5 +1,11 @@
 # WS2812_RMT Driver
 
+<!-- generated: chip-summary -->
+The **WS2812B** is an addressable RGB LED with its control circuit in one 5050 package: pixels chain on a single data
+wire, each keeps the first 24 bits it receives for its three LEDs and passes the rest on to the next pixel (Features and
+Benefits, p. 1).
+<!-- /generated -->
+
 C++20 driver for single-wire addressable RGB and RGBW LEDs (WS2812, WS2812B, WS2812C, WS2812D and the SK6812 family),
 sent as a timed bit stream through a small port class. On ESP32 the port uses the RMT transmitter.
 
@@ -10,37 +16,63 @@ sent as a timed bit stream through a small port class. On ESP32 the port uses th
 **Documentation: [`docs/`](docs/index.md)**, with the API reference built by Doxygen ([how](docs/api-reference.md)).
 The site at <https://kokeb-labs-drivers.github.io/driver-ws2812-rmt/> opens when the repository is public.
 
-These LEDs have one data wire and no clock: each pixel reads the length of every high pulse as a bit, keeps the
-first 24 bits (32 on SK6812RGBW) it sees and forwards the rest. A low longer than the reset time latches the frame.
-The datasheets of the parts differ in the allowed pulse lengths, and no single waveform serves every generation of
-the WS2812B. This driver keeps the pixels, encodes the byte stream (colour order, brightness, gamma), and works out
-the waveform from the windows of the variant you pick and the tick rate your port really runs at. A waveform
-outside the windows never reaches the wire. The port sends the bytes, so the core has no SDK, no heap and no
-platform code.
-
-<!-- figure: driver-layers -->
+<!-- figure: chip-hero -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/driver-layers.dark.svg">
-  <img src="docs/diagrams/driver-layers.svg"
-    alt="Layer diagram: your application calls the Ws2812Rmt core, which sends whole frames of pixel bytes
-    through the GPIO port contract to the port class you write, which drives the chip; the core and the
-    contract are the same on every MCU.">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/chip-hero.dark.svg">
+  <img src="docs/diagrams/chip-hero.svg"
+    alt="Overview of the WS2812B, an addressable RGB LED with its control circuit in one 5050 package: pixels
+    chain on a single data wire, each keeps the first 24 bits it receives for its three LEDs and passes
+    the rest on to the next pixel. A MCU talks to it over one data wire; it drives Red, green and blue
+    LEDs, then Next pixel. Headline figures: 800 kbit/s data rate on one wire; 24 bit per pixel: G, R,
+    B, 8 bits each; 256 brightness levels per colour; > 280 µs low time that latches a frame.">
 </picture>
 <!-- /figure -->
 
-## At a glance
+## What it does
 
-| | |
-| --- | --- |
-| **Chips** | WS2812, WS2812B (four timing generations), WS2812C, WS2812D-F8, SK6812, SK6812RGBW, SK6812MINI; other single-wire parts with the same frame through `Custom` |
-| **Frame** | 24 bits per pixel, GRB, high bit first (32 bits on SK6812RGBW); colour order is a `Config` field |
-| **Rate** | About 800 kbit/s; the waveform is resolved at your port's real tick rate (20 MHz or more for a named variant) |
-| **Bus** | None of the usual ones: one timed data line, sent by a port (`bus: pio`; on ESP32 the RMT transmitter) |
-| **Also drives** | The strip supply or a level shifter's enable, when your port has `GpioSet()` (`PowerOn()`, `PowerOff()`) |
-| **Convenience** | Linear brightness, an optional gamma 2.2 table, `ExtractWhite()` and `Wheel()`; no animations |
-| **Driver** | Header-only C++20, fixed capacity, no heap, exceptions, RTTI or virtual calls; every call returns `Result<T>` |
-| **Runs on** | The core: any MCU. The port: ESP32 (RMT) as an example; the host example runs a simulated strip ([Platforms](docs/platforms.md)) |
-| **Status** | 0.1.0, **not verified on hardware**: host-tested against a model written from the datasheets and fuzzed; see [Limitations](docs/limitations.md) |
+<!-- figure: chip-capabilities -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/chip-capabilities.dark.svg">
+  <img src="docs/diagrams/chip-capabilities.svg"
+    alt="Capability map of the WS2812B: 24-bit pixel colour (supported): Stores the colours and sends each
+    pixel as G, R, B, high bit first; the colour order is a Config field; Cascaded pixels (supported):
+    Sends a whole strip in one frame: each pixel keeps its 24 bits and forwards the rest; Bit timing
+    (supported): Turns the datasheet pulse windows into ticks of the rate your port really runs at, or
+    refuses; Frame latch (supported): Ends a frame with a low longer than the reset time (above 280 µs
+    on the V5 sheet) so the pixels latch; 256 brightness levels (supported): Scales the colours before
+    sending, with an optional gamma table; the chip itself takes 8 bits per colour; Shared power source
+    (supported): Logic and LEDs share one supply, so the driver can switch the strip's supply from an
+    MCU pin; Other generations (supported): Timing windows for the WS2812 and WS2812B generations,
+    WS2812C and D, and SK6812 parts, or a Custom timing; Input level (not covered): DIN needs at least
+    2.7 V on the V5 sheet; the driver cannot see the level, so a level shifter is yours.">
+</picture>
+<!-- /figure -->
+
+## Where it is used
+
+<!-- generated: chip-uses -->
+- Full-color modules
+- LED full-color soft and hard light bars
+- LED guardrail tubes
+- LED decorative lighting
+- LED screens, and indoor and outdoor irregular video screens
+- Marquees on electronic products and electrical equipment
+
+Uses named by the datasheet (Features and Benefits, p. 1).
+<!-- /generated -->
+
+## Inside the chip
+
+<!-- figure: chip-blocks -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/chip-blocks.dark.svg">
+  <img src="docs/diagrams/chip-blocks.svg"
+    alt="Block diagram of the WS2812B: its function blocks, how they connect and which package pins reach
+    each block.">
+</picture>
+<!-- /figure -->
+
+## Pins and wiring
 
 <!-- figure: chip-pinout -->
 <picture>
@@ -51,21 +83,39 @@ platform code.
 </picture>
 <!-- /figure -->
 
+<!-- figure: chip-wiring-direct -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/chip-wiring-direct.dark.svg">
+  <img src="docs/diagrams/chip-wiring-direct.svg"
+    alt="Wiring of the WS2812B for the Direct data line: MCU RMT data to DIN through R1 330 Ω (Transmit()).
+    Supplies, grounds and the support parts are listed under the drawing.">
+</picture>
+<!-- /figure -->
+
+| MCU | Strip | Notes |
+| --- | --- | --- |
+| Timed-output pin | DIN | A 3.3 V output meets the V5.0 and 2025 V6 sheets but not the 0.63 x VDD sheets (3.15 V at 5 V; fails above 5.24 V); older parts and SK6812 need a level shifter too: use one ([Hardware](docs/hardware.md#input-level-and-the-level-shifter)) |
+| GPIO (optional) | Supply enable | For `PowerOn()` and `PowerOff()` |
+| GND | GND | Common ground with the strip supply |
+| | VDD | 5 V, a large capacitor at the strip input and 100 nF at each pixel |
+
+The schematics with a level shifter and a switched supply are on [Hardware](docs/hardware.md).
+
+<!-- figure: chip-frame-pixel -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/chip-frame-pixel.dark.svg">
+  <img src="docs/diagrams/chip-frame-pixel.svg"
+    alt="Pixel data of the WS2812B, 24 bits, most significant bit first. DIN: G7 to G0 (bits 23 to 16), R7 to
+    R0 (bits 15 to 8), B7 to B0 (bits 7 to 0).">
+</picture>
+<!-- /figure -->
+
 <!-- figure: chip-outline -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/chip-outline.dark.svg">
   <img src="docs/diagrams/chip-outline.svg"
     alt="Outline of the WS2812B in 5050 (WS2812B) drawn to scale from above: body 5.4 x 5.0 x 1.57 mm, 4
     pins.">
-</picture>
-<!-- /figure -->
-
-<!-- figure: chip-blocks -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/chip-blocks.dark.svg">
-  <img src="docs/diagrams/chip-blocks.svg"
-    alt="Block diagram of the WS2812B: its function blocks, how they connect and which package pins reach
-    each block.">
 </picture>
 <!-- /figure -->
 
@@ -89,6 +139,103 @@ Also sold as:
 
 From [`docs/hardware.yml`](docs/hardware.yml); pins, circuits and the block diagram: [Hardware](docs/hardware.md).
 <!-- /generated -->
+
+## Quick start
+
+**1. Wire it** as in [Pins and wiring](#pins-and-wiring).
+
+**2. Write the port**: a class with `EnsureInitialized()` (open the channel), `ResolutionHz()` (the rate it really runs
+at), `Transmit()` (send the bytes, then hold the line low for the reset) and `DelayUs()`, about 30 lines on most SDKs.
+[Porting](docs/porting.md) has the contract; on ESP32 the finished port is in [`examples/esp32`](examples/esp32).
+
+**3. Show a colour:**
+
+<!-- generated: quickstart-code -->
+```cpp
+#include "ws2812_rmt.hpp"
+
+// 60 pixels of a current WS2812B (V5 or later): the default variant, GRB order.
+int32_t light_first_pixel_red() {
+  MyPort port;
+  ws2812_rmt::Ws2812Rmt<MyPort, 60> strip(port); // owns the pixel and wire buffers; no I/O yet
+  if (auto r = strip.EnsureInitialized(); !r) { // 1. channel up, waveform resolved at the real rate
+    return static_cast<int32_t>(r.error); //    Bus, or TimingUnreachable for an unsuitable rate
+  }
+  strip.Clear();                                                          // 2. all pixels black
+  static_cast<void>(strip.SetPixel(0, ws2812_rmt::Colour{255, 0, 0, 0})); //    pixel 0 is the first
+  if (auto r = strip.Show(); !r) {        // 3. encode, send, wait for the reset
+    return static_cast<int32_t>(r.error); //    Bus: the frame was not sent
+  }
+  return 0;
+}
+```
+<!-- /generated -->
+
+`EnsureInitialized()` is the only call that starts the driver. Every other call that talks to the port returns
+`Error::NotInitialized` until it has succeeded. Pick the `Variant` of your LEDs from [Timing](docs/timing.md): the
+default is the current WS2812B (V5, V6).
+
+## Driver coverage
+
+<!-- generated: chip-coverage -->
+| Capability | What the chip does | Driver API | Registers | Status | Datasheet |
+| --- | --- | --- | --- | --- | --- |
+| [24-bit pixel colour](docs/colour.md) | Stores the colours and sends each pixel as G, R, B, high bit first; the colour order is a Config field | `SetPixel`, `GetPixel`, `Fill`, `Clear`, `kOrderGrb` | - | Supported | Composition of 24bit Data, p. 4 |
+| Cascaded pixels | Sends a whole strip in one frame: each pixel keeps its 24 bits and forwards the rest | `Show`, `Length`, `kMaxPixels` | - | Supported | Data Transmission Method, p. 4 |
+| [Bit timing](docs/timing.md) | Turns the datasheet pulse windows into ticks of the rate your port really runs at, or refuses | `CurrentWaveform`, `ResolutionHz`, `Error::TimingUnreachable` | - | Supported | Data Transfer Time, p. 3 |
+| [Frame latch](docs/timing.md) | Ends a frame with a low longer than the reset time (above 280 µs on the V5 sheet) so the pixels latch | `Show`, `FrameTimeUs` | - | Supported | Data Transfer Time, p. 3 |
+| [256 brightness levels](docs/colour.md) | Scales the colours before sending, with an optional gamma table; the chip itself takes 8 bits per colour | `SetBrightness`, `SetGamma`, `Gamma::Gamma22` | - | Supported | Features and Benefits, p. 1 |
+| Shared power source | Logic and LEDs share one supply, so the driver can switch the strip's supply from an MCU pin | `PowerOn`, `PowerOff`, `GpioSet`, `CtrlPin::Power` | - | Supported | Features and Benefits, p. 1 |
+| [Other generations](docs/timing.md) | Timing windows for the WS2812 and WS2812B generations, WS2812C and D, and SK6812 parts, or a Custom timing | `Variant`, `Variant::Custom` | - | Supported | PIN Configuration, p. 2 |
+| [Input level](docs/hardware.md) | DIN needs at least 2.7 V on the V5 sheet; the driver cannot see the level, so a level shifter is yours | - | - | Not covered | Electrical Characteristics, p. 2 |
+
+**Supported**: the driver covers it and a host test checks it; **Not covered**: the chip has it and the driver leaves it
+alone.
+
+From [`docs/hardware.yml`](docs/hardware.yml); `kokeb-docs hardware --check` confirms that every API name is in
+`inc/ws2812_rmt.hpp`, `inc/ws2812_rmt_types.hpp`, `inc/ws2812_rmt_functions.hpp`, `inc/ws2812_rmt_gpio_interface.hpp`.
+<!-- /generated -->
+
+This driver keeps the pixels, encodes the byte stream (colour order, brightness, gamma), and works out the waveform from
+the windows of the variant you pick and the tick rate your port really runs at. A waveform outside the windows never
+reaches the wire. The port sends the bytes, so the core has no SDK, no heap and no platform code.
+
+| | |
+| --- | --- |
+| **Chips** | WS2812, WS2812B (four timing generations), WS2812C, WS2812D-F8, SK6812, SK6812RGBW, SK6812MINI; other single-wire parts with the same frame through `Custom` |
+| **Frame** | 24 bits per pixel, GRB, high bit first (32 bits on SK6812RGBW); colour order is a `Config` field |
+| **Rate** | About 800 kbit/s; the waveform is resolved at your port's real tick rate (20 MHz or more for a named variant) |
+| **Bus** | None of the usual ones: one timed data line, sent by a port (`bus: pio`; on ESP32 the RMT transmitter) |
+| **Also drives** | The strip supply or a level shifter's enable, when your port has `GpioSet()` (`PowerOn()`, `PowerOff()`) |
+| **Convenience** | Linear brightness, an optional gamma 2.2 table, `ExtractWhite()` and `Wheel()`; no animations |
+| **Driver** | Header-only C++20, fixed capacity, no heap, exceptions, RTTI or virtual calls; every call returns `Result<T>` |
+| **Runs on** | The core: any MCU. The port: ESP32 (RMT) as an example; the host example runs a simulated strip ([Platforms](docs/platforms.md)) |
+| **Status** | 0.1.0, **not verified on hardware**: host-tested against a model written from the datasheets and fuzzed; see [Limitations](docs/limitations.md) |
+
+- Stores the logical colours, and at `Show()` applies gamma and brightness and writes the bytes in the order you
+  declare, in one pass with no allocation.
+- Resolves the waveform: the nanosecond windows of the variant, converted to ticks at the real rate, inclusive at the
+  edges, with the reset strictly above the minimum. It refuses a rate that cannot meet a window (`TimingUnreachable`).
+- Sends nothing before a successful start, nothing after an invalid argument, and stays usable after a failed send.
+- Leaves out what is not the chip's: animations, effects and colour-space conversions.
+- Returns `Result<T>` with an `Error` from every call: no exceptions, no heap, no RTTI, no virtual calls.
+
+## Documentation
+
+| Page | Read it when you want to |
+| --- | --- |
+| [Quickstart](docs/quickstart.md) | Go from a bare strip to a lit pixel on your MCU |
+| [Hardware](docs/hardware.md) | Wire it: packages and pins, input levels, supply, level shifter, capacitors |
+| [Timing](docs/timing.md) | Pick the variant of your LEDs, and see how a waveform is resolved |
+| [Colour](docs/colour.md) | Set the colour order, brightness and gamma; RGBW |
+| [Porting](docs/porting.md) | Write the port class for your MCU's SDK |
+| [API guide](docs/api-guide.md) | Use each call: start, set, show, power, handle errors |
+| [Configuration](docs/configuration.md) | Choose the variant, the order, the reset, Kconfig or a `Custom` part |
+| [Troubleshooting](docs/troubleshooting.md) | Find the cause of a wrong colour, a dark strip or flicker |
+| [Limitations](docs/limitations.md) | See what is not covered, what it assumes, and what is not verified |
+| [Contract](docs/contract.md) | Know exactly what the driver promises, needs and returns |
+| [Datasheet map](docs/datasheet.md) | Find the datasheet section behind each part of the driver |
+| [API reference](docs/api-reference.md) | Look up a class or member (Doxygen; built by CI and locally) |
 
 ## Datasheet
 
@@ -159,58 +306,6 @@ You need git, CMake 3.16+ and a C++20 compiler (GCC 10+, Clang 13+ or MSVC 2022)
 To run the whole test suite instead: `cmake -S . -B build -DWS2812_RMT_BUILD_TESTS=ON && cmake --build build && ctest
 --test-dir build`.
 
-## Use it on your MCU
-
-**1. Wire it** ([Hardware](docs/hardware.md) has the pins of every package and the level rules):
-
-| MCU | Strip | Notes |
-| --- | --- | --- |
-| Timed-output pin | DIN | A 3.3 V output meets the V5.0 and 2025 V6 sheets but not the 0.63 x VDD sheets (3.15 V at 5 V; fails above 5.24 V); older parts and SK6812 need a level shifter too: use one ([Hardware](docs/hardware.md#input-level-and-the-level-shifter)) |
-| GPIO (optional) | Supply enable | For `PowerOn()` and `PowerOff()` |
-| GND | GND | Common ground with the strip supply |
-| | VDD | 5 V, a large capacitor at the strip input and 100 nF at each pixel |
-
-**2. Write the port**: a class with `EnsureInitialized()` (open the channel), `ResolutionHz()` (the rate it really runs
-at), `Transmit()` (send the bytes, then hold the line low for the reset) and `DelayUs()`, about 30 lines on most SDKs.
-[Porting](docs/porting.md) has the contract; on ESP32 the finished port is in [`examples/esp32`](examples/esp32).
-
-**3. Show a colour:**
-
-<!-- generated: quickstart-code -->
-```cpp
-#include "ws2812_rmt.hpp"
-
-// 60 pixels of a current WS2812B (V5 or later): the default variant, GRB order.
-int32_t light_first_pixel_red() {
-  MyPort port;
-  ws2812_rmt::Ws2812Rmt<MyPort, 60> strip(port); // owns the pixel and wire buffers; no I/O yet
-  if (auto r = strip.EnsureInitialized(); !r) { // 1. channel up, waveform resolved at the real rate
-    return static_cast<int32_t>(r.error); //    Bus, or TimingUnreachable for an unsuitable rate
-  }
-  strip.Clear();                                                          // 2. all pixels black
-  static_cast<void>(strip.SetPixel(0, ws2812_rmt::Colour{255, 0, 0, 0})); //    pixel 0 is the first
-  if (auto r = strip.Show(); !r) {        // 3. encode, send, wait for the reset
-    return static_cast<int32_t>(r.error); //    Bus: the frame was not sent
-  }
-  return 0;
-}
-```
-<!-- /generated -->
-
-`EnsureInitialized()` is the only call that starts the driver. Every other call that talks to the port returns
-`Error::NotInitialized` until it has succeeded. Pick the `Variant` of your LEDs from [Timing](docs/timing.md): the
-default is the current WS2812B (V5, V6).
-
-## What it does
-
-- Stores the logical colours, and at `Show()` applies gamma and brightness and writes the bytes in the order you
-  declare, in one pass with no allocation.
-- Resolves the waveform: the nanosecond windows of the variant, converted to ticks at the real rate, inclusive at the
-  edges, with the reset strictly above the minimum. It refuses a rate that cannot meet a window (`TimingUnreachable`).
-- Sends nothing before a successful start, nothing after an invalid argument, and stays usable after a failed send.
-- Leaves out what is not the chip's: animations, effects and colour-space conversions.
-- Returns `Result<T>` with an `Error` from every call: no exceptions, no heap, no RTTI, no virtual calls.
-
 ## Add it to your project
 
 Pick the row that matches your build; [Installation](docs/installation.md) has the details.
@@ -268,23 +363,6 @@ Pick the row that matches your build; [Installation](docs/installation.md) has t
    ```
 
 The target is `ws2812_rmt::ws2812_rmt` every way, so switching later changes nothing else.
-
-## Documentation
-
-| Page | Read it when you want to |
-| --- | --- |
-| [Quickstart](docs/quickstart.md) | Go from a bare strip to a lit pixel on your MCU |
-| [Hardware](docs/hardware.md) | Wire it: packages and pins, input levels, supply, level shifter, capacitors |
-| [Timing](docs/timing.md) | Pick the variant of your LEDs, and see how a waveform is resolved |
-| [Colour](docs/colour.md) | Set the colour order, brightness and gamma; RGBW |
-| [Porting](docs/porting.md) | Write the port class for your MCU's SDK |
-| [API guide](docs/api-guide.md) | Use each call: start, set, show, power, handle errors |
-| [Configuration](docs/configuration.md) | Choose the variant, the order, the reset, Kconfig or a `Custom` part |
-| [Troubleshooting](docs/troubleshooting.md) | Find the cause of a wrong colour, a dark strip or flicker |
-| [Limitations](docs/limitations.md) | See what is not covered, what it assumes, and what is not verified |
-| [Contract](docs/contract.md) | Know exactly what the driver promises, needs and returns |
-| [Datasheet map](docs/datasheet.md) | Find the datasheet section behind each part of the driver |
-| [API reference](docs/api-reference.md) | Look up a class or member (Doxygen; built by CI and locally) |
 
 ## Tests and quality
 

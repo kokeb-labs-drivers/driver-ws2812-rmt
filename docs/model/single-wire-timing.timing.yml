@@ -1,0 +1,42 @@
+---
+# Model of the figure 'single-wire-timing'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# Every number is a param with the datasheet section and page it comes from (refs in docs/hardware.yml). The values
+# are those of the WS2812B V5 data sheet (document b-v5), the default variant `Ws2812bV5`; docs/timing.md lists the
+# windows of every other variant.
+kind: timing
+id: single-wire-timing
+title: One wire, two codes and the reset
+kicker: On the bus
+alt: >-
+  Single-wire timing of the WS2812B V5: a 0 code is a short high and a long low, a 1 code a long high and a long low,
+  and a low longer than the reset time latches the frame before the next one starts.
+reads: >-
+  The lane is DIN, left to right in time. The line idles low; a 0 code is high for T0H then low for T0L, a 1 code high
+  for T1H then low for T1L, and the remaining bits of the frame are left out. After the last bit DIN stays low for
+  longer than RES, the pixels latch their colours and the next high starts a new frame.
+print: landscape
+sources:
+  - docs/model/single-wire-timing.timing.yml
+bus: single-wire
+signals:
+  - {id: din, label: DIN, wave: "010..1..0..|0.|010"}
+groups:
+  - {from: 1, to: 5, label: 0 code, ref: timing}
+  - {from: 5, to: 11, label: 1 code, ref: timing}
+  - {from: 12, to: 16, label: "reset: the frame latches"}
+  - {from: 16, to: 18, label: next}
+params:
+  - {id: t0h, symbol: T0H, label: "0 code, high voltage time", min: 220, max: 380, unit: ns, ref: timing}
+  - {id: t0l, symbol: T0L, label: "0 code, low voltage time", min: 580, max: 1000, unit: ns, ref: timing}
+  - {id: t1h, symbol: T1H, label: "1 code, high voltage time", min: 580, max: 1000, unit: ns, ref: timing}
+  - {id: t1l, symbol: T1L, label: "1 code, low voltage time", min: 580, max: 1000, unit: ns, ref: timing}
+  - {id: res, symbol: RES, label: "Frame unit, low voltage time (more than)", min: 280, unit: µs, ref: timing}
+  - {id: tplz, symbol: tPLZ, label: "Transmission delay time, DIN to DOUT", max: 300, unit: ns, ref: switching}
+marks:
+  - {param: t0h, signal: din, from: 1, to: 2}
+  - {param: t0l, signal: din, from: 2, to: 5}
+  - {param: t1h, signal: din, from: 5, to: 8}
+  - {param: t1l, signal: din, from: 8, to: 11}
+  - {param: res, signal: din, from: 12, to: 16}
+notes:
+  - {text: "Each pixel takes 24 bits, G then R then B, high bit first.", ref: frame}

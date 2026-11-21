@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="924" viewBox="0 0 1200 924" role="img" aria-labelledby="chip-capabilities-title chip-capabilities-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-capabilities-title">What the WS2812B does</title>
+<desc id="chip-capabilities-desc">Capability map of the WS2812B: 24-bit pixel colour (supported): Stores the colours and sends each pixel as G, R, B, high bit first; the colour order is a Config field; Cascaded pixels (supported): Sends a whole strip in one frame: each pixel keeps its 24 bits and forwards the rest; Bit timing (supported): Turns the datasheet pulse windows into ticks of the rate your port really runs at, or refuses; Frame latch (supported): Ends a frame with a low longer than the reset time (above 280 µs on the V5 sheet) so the pixels latch; 256 brightness levels (supported): Scales the colours before sending, with an optional gamma table; the chip itself takes 8 bits per colour; Shared power source (supported): Logic and LEDs share one supply, so the driver can switch the strip's supply from an MCU pin; Other generations (supported): Timing windows for the WS2812 and WS2812B generations, WS2812C and D, and SK6812 parts, or a Custom timing; Input level (not covered): DIN needs at least 2.7 V on the V5 sheet; the driver cannot see the level, so a level shifter is yours.</desc>
+<rect x="0.5" y="0.5" width="1199" height="923" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">CAPABILITIES</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">What the WS2812B does</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">One card per function of the chip, with how this driver covers it and the registers behind it.</text>
+<rect x="32" y="131.4" width="1136" height="1" fill="#E2E7EE"/>
+<rect x="32" y="149.4" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="149.4" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="802.7" y="149.4" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="32" y="385.3" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="385.3" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="802.7" y="385.3" width="365.3" height="215.9" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="32" y="621.3" width="365.3" height="240.6" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<rect x="417.3" y="621.3" width="365.3" height="240.6" rx="12" fill="#FFFFFF" stroke="#C9D1DB" stroke-width="1"/>
+<circle cx="78" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<circle cx="78" cy="192.5" r="8.7" fill="none" stroke="#9A4A17" stroke-width="2.5"/>
+<path d="M74.4 203.4 L81.6 203.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M75.8 207.7 L80.2 207.7" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="201.4" font-size="20" font-weight="700" fill="#0E1726">24-bit pixel colour</text>
+<text x="50" y="249.8" font-size="17" fill="#2B3442">Stores the colours and sends each</text>
+<text x="50" y="274.5" font-size="17" fill="#2B3442">pixel as G, R, B, high bit first; the</text>
+<text x="50" y="299.1" font-size="17" fill="#2B3442">colour order is a Config field</text>
+<rect x="50" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="58" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<circle cx="463.3" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M448.9 191.1 L456.1 191.1 L456.1 199.7 L448.9 199.7 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M459.7 191.1 L466.9 191.1 L466.9 199.7 L459.7 199.7 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M470.6 191.1 L477.8 191.1 L477.8 199.7 L470.6 199.7 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M456.1 195.4 L459.7 195.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M466.9 195.4 L470.6 195.4" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="201.4" font-size="20" font-weight="700" fill="#0E1726">Cascaded pixels</text>
+<text x="435.3" y="249.8" font-size="17" fill="#2B3442">Sends a whole strip in one frame:</text>
+<text x="435.3" y="274.5" font-size="17" fill="#2B3442">each pixel keeps its 24 bits and</text>
+<text x="435.3" y="299.1" font-size="17" fill="#2B3442">forwards the rest</text>
+<rect x="435.3" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="443.3" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<circle cx="848.7" cy="195.4" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<circle cx="848.7" cy="195.4" r="13" fill="none" stroke="#9A4A17" stroke-width="2.5"/>
+<path d="M848.7 188.2 L848.7 195.4 L853.7 198.3" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="201.4" font-size="20" font-weight="700" fill="#0E1726">Bit timing</text>
+<text x="820.7" y="249.8" font-size="17" fill="#2B3442">Turns the datasheet pulse windows</text>
+<text x="820.7" y="274.5" font-size="17" fill="#2B3442">into ticks of the rate your port really</text>
+<text x="820.7" y="299.1" font-size="17" fill="#2B3442">runs at, or refuses</text>
+<rect x="820.7" y="317.7" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="828.7" y="335.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<circle cx="78" cy="431.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<circle cx="78" cy="431.3" r="13" fill="none" stroke="#9A4A17" stroke-width="2.5"/>
+<path d="M71.5 432.1 L75.8 436.4 L84.5 427" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="437.3" font-size="20" font-weight="700" fill="#0E1726">Frame latch</text>
+<text x="50" y="485.8" font-size="17" fill="#2B3442">Ends a frame with a low longer than</text>
+<text x="50" y="510.4" font-size="17" fill="#2B3442">the reset time (above 280 µs on the</text>
+<text x="50" y="535.1" font-size="17" fill="#2B3442">V5 sheet) so the pixels latch</text>
+<rect x="50" y="553.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="58" y="571.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<circle cx="463.3" cy="431.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M451.8 437.1 A11.6 11.6 0 0 1 474.9 437.1" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 437.1 L469.8 428.5" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="463.3" cy="437.1" r="2.6" fill="#9A4A17"/>
+<path d="M450.3 442.2 L476.4 442.2" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="437.3" font-size="20" font-weight="700" fill="#0E1726">256 brightness levels</text>
+<text x="435.3" y="485.8" font-size="17" fill="#2B3442">Scales the colours before sending,</text>
+<text x="435.3" y="510.4" font-size="17" fill="#2B3442">with an optional gamma table; the chip</text>
+<text x="435.3" y="535.1" font-size="17" fill="#2B3442">itself takes 8 bits per colour</text>
+<rect x="435.3" y="553.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="443.3" y="571.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<circle cx="848.7" cy="431.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M850.8 418.3 L840 433.5 L847.9 433.5 L846.5 444.4 L857.3 429.2 L849.4 429.2 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="890.7" y="437.3" font-size="20" font-weight="700" fill="#0E1726">Shared power source</text>
+<text x="820.7" y="485.8" font-size="17" fill="#2B3442">Logic and LEDs share one supply, so</text>
+<text x="820.7" y="510.4" font-size="17" fill="#2B3442">the driver can switch the strip's</text>
+<text x="820.7" y="535.1" font-size="17" fill="#2B3442">supply from an MCU pin</text>
+<rect x="820.7" y="553.6" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="828.7" y="571.8" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<circle cx="78" cy="667.3" r="28" fill="#FBEFE6" stroke="#E9C3A6" stroke-width="1.2"/>
+<path d="M66.4 655.7 L78 655.7 L89.6 667.3 L78 678.9 L66.4 667.3 Z" fill="none" stroke="#9A4A17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="72.9" cy="662.2" r="2.3" fill="#9A4A17"/>
+<text x="120" y="673.3" font-size="20" font-weight="700" fill="#0E1726">Other generations</text>
+<text x="50" y="721.8" font-size="17" fill="#2B3442">Timing windows for the WS2812 and</text>
+<text x="50" y="746.4" font-size="17" fill="#2B3442">WS2812B generations, WS2812C and</text>
+<text x="50" y="771" font-size="17" fill="#2B3442">D, and SK6812 parts, or a Custom</text>
+<text x="50" y="795.7" font-size="17" fill="#2B3442">timing</text>
+<rect x="50" y="814.2" width="103.4" height="26" rx="13" fill="#14532D"/>
+<text x="58" y="832.4" font-size="16" font-weight="700" fill="#FFFFFF">Supported</text>
+<circle cx="463.3" cy="667.3" r="28" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1.2"/>
+<path d="M450.3 667.3 L459 667.3" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M459 658.6 L459 676" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 658.6 L463.3 676" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 661.5 L474.9 661.5 L474.9 654.3" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M463.3 673.1 L474.9 673.1 L474.9 680.3" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="505.3" y="673.3" font-size="20" font-weight="700" fill="#0E1726">Input level</text>
+<text x="435.3" y="721.8" font-size="17" fill="#2B3442">DIN needs at least 2.7 V on the V5</text>
+<text x="435.3" y="746.4" font-size="17" fill="#2B3442">sheet; the driver cannot see the level,</text>
+<text x="435.3" y="771" font-size="17" fill="#2B3442">so a level shifter is yours</text>
+<rect x="435.3" y="789.6" width="117.9" height="26" rx="13" fill="#334155"/>
+<text x="443.3" y="807.7" font-size="16" font-weight="700" fill="#FFFFFF">Not covered</text>
+<rect x="32" y="874.3" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="54" y="888.9" font-size="16" fill="#566070">Supported: the driver covers it and a host test checks it</text>
+<rect x="522.3" y="874.3" width="14" height="14" rx="4" fill="#F1F4F8" stroke="#64748B" stroke-width="1.4"/>
+<text x="544.3" y="888.9" font-size="16" fill="#566070">Not covered: the chip has it and the driver leaves it alone</text>
+</svg>
