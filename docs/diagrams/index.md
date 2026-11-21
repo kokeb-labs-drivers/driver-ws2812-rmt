@@ -269,3 +269,37 @@ Drawn from:
 
 - `public calls` in [`inc/ws2812_rmt.hpp`](../../inc/ws2812_rmt.hpp)
 - `GpioInterface` in [`inc/ws2812_rmt_gpio_interface.hpp`](../../inc/ws2812_rmt_gpio_interface.hpp)
+
+## Pixels in a chain
+
+<!-- figure: single-wire-chain -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="single-wire-chain.dark.svg">
+  <img src="single-wire-chain.svg"
+    alt="Chain of WS2812B pixels on one data wire: the MCU drives DIN of the first pixel, each DOUT drives
+    the next DIN, and every pixel shares the VDD and VSS supply rails.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/single-wire-chain.topology.yml`](../model/single-wire-chain.topology.yml)
+
+Drawn from:
+
+- [`docs/model/single-wire-chain.topology.yml`](../model/single-wire-chain.topology.yml)
+
+## One wire, two codes and the reset
+
+<!-- figure: single-wire-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="single-wire-timing.dark.svg">
+  <img src="single-wire-timing.svg"
+    alt="Single-wire timing of the WS2812B V5: a 0 code is a short high and a long low, a 1 code a long high
+    and a long low, and a low longer than the reset time latches the frame before the next one starts.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/single-wire-timing.timing.yml`](../model/single-wire-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/single-wire-timing.timing.yml`](../model/single-wire-timing.timing.yml)

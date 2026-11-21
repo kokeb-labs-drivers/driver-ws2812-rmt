@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="930" viewBox="0 0 640 930" role="img" aria-labelledby="single-wire-timing-title single-wire-timing-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" class="fk">
+<title id="single-wire-timing-title">One wire, two codes and the reset</title>
+<desc id="single-wire-timing-desc">Single-wire timing of the WS2812B V5: a 0 code is a short high and a long low, a 1 code a long high and a long low, and a low longer than the reset time latches the frame before the next one starts.</desc>
+<style>
+.fk{--fk-brand-text:#7A360E;--fk-canvas:#FFFFFF;--fk-frame:#E2E7EE;--fk-hair:#E2E7EE;--fk-ink:#0E1726;--fk-ink2:#2B3442;--fk-muted:#566070;--fk-rail:#7C8798;--fk-slate-soft:#CBD5E1;--fk-slate-strong:#64748B;--fk-slate-text:#334155;--fk-slate-tint:#F1F4F8;}
+@media (prefers-color-scheme:dark){.fk{--fk-brand-text:#F8D27A;--fk-canvas:#0E131A;--fk-frame:#283241;--fk-hair:#252F3C;--fk-ink:#E8EDF3;--fk-ink2:#D2DAE4;--fk-muted:#9AA6B5;--fk-rail:#6C7889;--fk-slate-soft:#3A4656;--fk-slate-strong:#94A3B8;--fk-slate-text:#E2E8F0;--fk-slate-tint:#1B232E;}}
+:root[data-theme="dark"] .fk,[data-md-color-scheme="slate"] .fk{--fk-brand-text:#F8D27A;--fk-canvas:#0E131A;--fk-frame:#283241;--fk-hair:#252F3C;--fk-ink:#E8EDF3;--fk-ink2:#D2DAE4;--fk-muted:#9AA6B5;--fk-rail:#6C7889;--fk-slate-soft:#3A4656;--fk-slate-strong:#94A3B8;--fk-slate-text:#E2E8F0;--fk-slate-tint:#1B232E;}
+:root[data-theme="light"] .fk,[data-md-color-scheme="default"] .fk{--fk-brand-text:#7A360E;--fk-canvas:#FFFFFF;--fk-frame:#E2E7EE;--fk-hair:#E2E7EE;--fk-ink:#0E1726;--fk-ink2:#2B3442;--fk-muted:#566070;--fk-rail:#7C8798;--fk-slate-soft:#CBD5E1;--fk-slate-strong:#64748B;--fk-slate-text:#334155;--fk-slate-tint:#F1F4F8;}
+.fk-f-brand-text{fill:var(--fk-brand-text)}.fk-s-brand-text{stroke:var(--fk-brand-text)}
+.fk-f-canvas{fill:var(--fk-canvas)}.fk-s-canvas{stroke:var(--fk-canvas)}
+.fk-f-frame{fill:var(--fk-frame)}.fk-s-frame{stroke:var(--fk-frame)}
+.fk-f-hair{fill:var(--fk-hair)}.fk-s-hair{stroke:var(--fk-hair)}
+.fk-f-ink{fill:var(--fk-ink)}.fk-s-ink{stroke:var(--fk-ink)}
+.fk-f-ink2{fill:var(--fk-ink2)}.fk-s-ink2{stroke:var(--fk-ink2)}
+.fk-f-muted{fill:var(--fk-muted)}.fk-s-muted{stroke:var(--fk-muted)}
+.fk-f-rail{fill:var(--fk-rail)}.fk-s-rail{stroke:var(--fk-rail)}
+.fk-f-slate-soft{fill:var(--fk-slate-soft)}.fk-s-slate-soft{stroke:var(--fk-slate-soft)}
+.fk-f-slate-strong{fill:var(--fk-slate-strong)}.fk-s-slate-strong{stroke:var(--fk-slate-strong)}
+.fk-f-slate-text{fill:var(--fk-slate-text)}.fk-s-slate-text{stroke:var(--fk-slate-text)}
+.fk-f-slate-tint{fill:var(--fk-slate-tint)}.fk-s-slate-tint{stroke:var(--fk-slate-tint)}
+@media (forced-colors:active){.fk text{fill:CanvasText}.fk rect,.fk circle{fill:Canvas;stroke:CanvasText}.fk path{stroke:CanvasText}.fk marker path{fill:CanvasText;stroke:none}}
+</style>
+<defs><marker id="single-wire-timing-arrow-ink2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="fk-f-ink2"/></marker></defs>
+<rect x="0.5" y="0.5" width="639" height="929" rx="16" class="fk-f-canvas fk-s-frame"/>
+<text x="32" y="44.4" font-size="13" font-weight="700" letter-spacing="1.2" class="fk-f-brand-text">ON THE BUS</text>
+<text x="32" y="76.2" font-size="24" font-weight="700" class="fk-f-ink">One wire, two codes and the reset</text>
+<text x="32" y="102.7" font-size="15" class="fk-f-muted">Datasheet: Data Transfer Time, p. 3; Switching Characteristics, p. 3;</text>
+<text x="32" y="124.5" font-size="15" class="fk-f-muted">Composition of 24bit Data, p. 4.</text>
+<rect x="32" y="140.4" width="576" height="1" class="fk-f-hair"/>
+<path d="M116.6 250.8 L116.6 303" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M145.1 250.8 L145.1 303" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M145.1 250.8 L145.1 337.2" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M230.8 250.8 L230.8 337.2" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M230.8 250.8 L230.8 303" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M316.4 250.8 L316.4 303" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M316.4 250.8 L316.4 337.2" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M402.1 250.8 L402.1 337.2" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M430.7 250.8 L430.7 303" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M544.9 250.8 L544.9 303" fill="none" stroke-width="1" stroke-dasharray="3 3" class="fk-s-rail"/>
+<path d="M88 232.8 L88 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M116.6 232.8 L116.6 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M145.1 232.8 L145.1 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M173.7 232.8 L173.7 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M202.2 232.8 L202.2 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M230.8 232.8 L230.8 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M259.3 232.8 L259.3 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M287.9 232.8 L287.9 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M316.4 232.8 L316.4 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M345 232.8 L345 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M373.6 232.8 L373.6 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M402.1 232.8 L402.1 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M430.7 232.8 L430.7 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M459.2 232.8 L459.2 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M487.8 232.8 L487.8 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M516.3 232.8 L516.3 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M544.9 232.8 L544.9 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M573.4 232.8 L573.4 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M602 232.8 L602 337.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M32 383.4 L608 383.4" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M32 456.2 L608 456.2" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M32 529 L608 529" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M32 601.9 L608 601.9" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M32 674.8 L608 674.8" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M32 747.6 L608 747.6" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M32 820.5 L608 820.5" fill="none" stroke-width="1" class="fk-s-hair"/>
+<path d="M117.6 223.8 L117.6 218.8 L229.8 218.8 L229.8 223.8" fill="none" stroke-width="1.4" class="fk-s-slate-strong"/>
+<path d="M231.8 191.6 L231.8 186.6 L401.1 186.6 L401.1 191.6" fill="none" stroke-width="1.4" class="fk-s-slate-strong"/>
+<path d="M431.7 223.8 L431.7 218.8 L543.9 218.8 L543.9 223.8" fill="none" stroke-width="1.4" class="fk-s-slate-strong"/>
+<path d="M545.9 191.6 L545.9 186.6 L601 186.6 L601 191.6" fill="none" stroke-width="1.4" class="fk-s-slate-strong"/>
+<path d="M88 263.9 L116.6 263.9 L116.6 263.9 L116.6 237.8 L145.1 237.8 L145.1 237.8 L145.1 263.9 L230.8 263.9 L230.8 263.9 L230.8 237.8 L316.4 237.8 L316.4 237.8 L316.4 263.9 L402.1 263.9 L430.7 263.9 L487.8 263.9 L516.3 263.9 L544.9 263.9 L544.9 263.9 L544.9 237.8 L573.4 237.8 L573.4 237.8 L573.4 263.9 L602 263.9" fill="none" stroke-width="2" class="fk-s-ink2"/>
+<path d="M117.6 299 L144.1 299" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#single-wire-timing-arrow-ink2)" marker-start="url(#single-wire-timing-arrow-ink2)" class="fk-s-ink2"/>
+<path d="M146.1 333.2 L229.8 333.2" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#single-wire-timing-arrow-ink2)" marker-start="url(#single-wire-timing-arrow-ink2)" class="fk-s-ink2"/>
+<path d="M231.8 299 L315.4 299" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#single-wire-timing-arrow-ink2)" marker-start="url(#single-wire-timing-arrow-ink2)" class="fk-s-ink2"/>
+<path d="M317.4 333.2 L401.1 333.2" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#single-wire-timing-arrow-ink2)" marker-start="url(#single-wire-timing-arrow-ink2)" class="fk-s-ink2"/>
+<path d="M431.7 299 L543.9 299" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#single-wire-timing-arrow-ink2)" marker-start="url(#single-wire-timing-arrow-ink2)" class="fk-s-ink2"/>
+<rect x="32" y="834.5" width="576" height="65.1" rx="10" stroke-width="1" class="fk-f-slate-tint fk-s-slate-soft"/>
+<text x="173.7" y="207.9" font-size="14" font-weight="600" text-anchor="middle" class="fk-f-slate-text">0 code</text>
+<text x="316.4" y="175.8" font-size="14" font-weight="600" text-anchor="middle" class="fk-f-slate-text">1 code</text>
+<text x="487.8" y="207.9" font-size="14" font-weight="600" text-anchor="middle" class="fk-f-slate-text">reset: the frame latches</text>
+<text x="573.4" y="175.8" font-size="14" font-weight="600" text-anchor="middle" class="fk-f-slate-text">next</text>
+<text x="32" y="256.2" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" class="fk-f-ink">DIN</text>
+<rect x="412.4" y="233.8" width="8" height="34" rx="0" class="fk-f-canvas"/>
+<path d="M409.4 266.9 L415.4 234.8" fill="none" stroke-width="1.4" class="fk-s-ink2"/>
+<path d="M417.4 266.9 L423.4 234.8" fill="none" stroke-width="1.4" class="fk-s-ink2"/>
+<rect x="498.1" y="233.8" width="8" height="34" rx="0" class="fk-f-canvas"/>
+<path d="M495.1 266.9 L501.1 234.8" fill="none" stroke-width="1.4" class="fk-s-ink2"/>
+<path d="M503.1 266.9 L509.1 234.8" fill="none" stroke-width="1.4" class="fk-s-ink2"/>
+<text x="151.1" y="304.1" font-size="14" font-weight="700" class="fk-f-ink">T0H</text>
+<text x="187.9" y="320.4" font-size="14" font-weight="700" text-anchor="middle" class="fk-f-ink">T0L</text>
+<text x="273.6" y="286.1" font-size="14" font-weight="700" text-anchor="middle" class="fk-f-ink">T1H</text>
+<text x="359.3" y="320.4" font-size="14" font-weight="700" text-anchor="middle" class="fk-f-ink">T1L</text>
+<text x="487.8" y="286.1" font-size="14" font-weight="700" text-anchor="middle" class="fk-f-ink">RES</text>
+<text x="32" y="367.7" font-size="17" font-weight="700" class="fk-f-ink">Timing values</text>
+<text x="32" y="404.1" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" class="fk-f-ink">T0H</text>
+<text x="608" y="404.1" font-size="15" font-weight="700" text-anchor="end" class="fk-f-ink">min 220 · max 380 ns</text>
+<text x="32" y="424.3" font-size="15" class="fk-f-ink2">0 code, high voltage time</text>
+<text x="32" y="444.5" font-size="14" class="fk-f-muted">Datasheet Data Transfer Time, p. 3</text>
+<text x="32" y="476.9" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" class="fk-f-ink">T0L</text>
+<text x="608" y="476.9" font-size="15" font-weight="700" text-anchor="end" class="fk-f-ink">min 580 · max 1000 ns</text>
+<text x="32" y="497.2" font-size="15" class="fk-f-ink2">0 code, low voltage time</text>
+<text x="32" y="517.3" font-size="14" class="fk-f-muted">Datasheet Data Transfer Time, p. 3</text>
+<text x="32" y="549.8" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" class="fk-f-ink">T1H</text>
+<text x="608" y="549.8" font-size="15" font-weight="700" text-anchor="end" class="fk-f-ink">min 580 · max 1000 ns</text>
+<text x="32" y="570" font-size="15" class="fk-f-ink2">1 code, high voltage time</text>
+<text x="32" y="590.2" font-size="14" class="fk-f-muted">Datasheet Data Transfer Time, p. 3</text>
+<text x="32" y="622.7" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" class="fk-f-ink">T1L</text>
+<text x="608" y="622.7" font-size="15" font-weight="700" text-anchor="end" class="fk-f-ink">min 580 · max 1000 ns</text>
+<text x="32" y="642.9" font-size="15" class="fk-f-ink2">1 code, low voltage time</text>
+<text x="32" y="663" font-size="14" class="fk-f-muted">Datasheet Data Transfer Time, p. 3</text>
+<text x="32" y="695.5" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" class="fk-f-ink">RES</text>
+<text x="608" y="695.5" font-size="15" font-weight="700" text-anchor="end" class="fk-f-ink">min 280 µs</text>
+<text x="32" y="715.8" font-size="15" class="fk-f-ink2">Frame unit, low voltage time (more than)</text>
+<text x="32" y="735.9" font-size="14" class="fk-f-muted">Datasheet Data Transfer Time, p. 3</text>
+<text x="32" y="768.4" font-size="15" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" class="fk-f-ink">tPLZ</text>
+<text x="608" y="768.4" font-size="15" font-weight="700" text-anchor="end" class="fk-f-ink">max 300 ns</text>
+<text x="32" y="788.6" font-size="15" class="fk-f-ink2">Transmission delay time, DIN to DOUT</text>
+<text x="32" y="808.8" font-size="14" class="fk-f-muted">Datasheet Switching Characteristics, p. 3</text>
+<text x="46" y="862.9" font-size="17" font-weight="700" class="fk-f-slate-text">Notes</text>
+<text x="46" y="883.3" font-size="15" class="fk-f-slate-text">Each pixel takes 24 bits, G then R then B, high bit first.</text>
+</svg>

@@ -83,11 +83,13 @@ are the datasheet's own (the printed page numbers).
 | Input levels VIH and VIL | WS2812B-V5: Electrical Characteristics | p. 2 | `MinLogicHighMv()` | [Hardware](hardware.md), [Troubleshooting](troubleshooting.md) |
 | Supply range and logical input voltage | WS2812B-V5: Absolute Maximum Ratings | p. 2 | `MinLogicHighMv()` | [Hardware](hardware.md) |
 | Pins and package: four pin 5050 | WS2812B-V5: PIN Configuration | p. 2 | `GpioInterface` (the data pin is the port's) | [Hardware](hardware.md), [Quickstart](quickstart.md) |
-| T0H, T0L, T1H, T1L windows: WS2812B V5, V6, 2020 | WS2812B-V5: Data Transfer Time | p. 3 | `Variant::Ws2812bV5`, `ProfileTiming()`, `ResolveWaveform()` | [Timing](timing.md), [Configuration](configuration.md) |
-| RES: the reset low time | WS2812B-V5: Data Transfer Time (RES) | p. 3 | `Timing::reset_min_ns`, `Config::reset_us`, `kResetMarginUs` | [Timing](timing.md), [Configuration](configuration.md), [Troubleshooting](troubleshooting.md) |
-| Propagation delay DIN to DOUT | WS2812B-V5: Switching Characteristics | p. 3 | `FrameTimeNs()` | [Timing](timing.md), [Hardware](hardware.md) |
+| T0H, T0L, T1H, T1L windows: WS2812B V5, V6, 2020 | WS2812B-V5: Data Transfer Time | p. 3 | `Variant::Ws2812bV5`, `ProfileTiming()`, `ResolveWaveform()` | [Timing](timing.md), [Configuration](configuration.md), [On the bus](bus.md) |
+| RES: the reset low time | WS2812B-V5: Data Transfer Time (RES) | p. 3 | `Timing::reset_min_ns`, `Config::reset_us`, `kResetMarginUs` | [Timing](timing.md), [Configuration](configuration.md), [Troubleshooting](troubleshooting.md), [On the bus](bus.md) |
+| Cascade method: D1 from the MCU, DIN to DO pixel by pixel | WS2812B-V5: Cascade Method | p. 3 | `Ws2812Rmt::Show()` | [On the bus](bus.md) |
+| Propagation delay DIN to DOUT | WS2812B-V5: Switching Characteristics | p. 3 | `FrameTimeNs()` | [Timing](timing.md), [Hardware](hardware.md), [On the bus](bus.md) |
 | 24 bit data, GRB, high bit first | WS2812B-V5: Composition of 24bit Data | p. 4 | `EncodePixel()`, `EncodeFrame()`, `kOrderGrb` | [Colour](colour.md), [API guide](api-guide.md) |
-| Cascade and data transmission method | WS2812B-V5: Data Transmission Method | p. 4 | `Ws2812Rmt::Show()`, `MaxPixelsAtRate()` | [API guide](api-guide.md), [Timing](timing.md) |
+| Cascade and data transmission method | WS2812B-V5: Data Transmission Method | p. 4 | `Ws2812Rmt::Show()`, `MaxPixelsAtRate()` | [API guide](api-guide.md), [Timing](timing.md), [On the bus](bus.md) |
+| Typical application circuit of the V5: shared VDD and GND | WS2812B-V5: Typical Application Circuit | p. 4 | `CtrlPin::Power` | [On the bus](bus.md), [Hardware](hardware.md) |
 | Input level 0.63 x VDD (later V5 family sheets) | WS2812B-V5: Electrical Characteristics | p. 3 | `MinLogicHighMv()` | [Hardware](hardware.md), [Troubleshooting](troubleshooting.md) |
 | Same windows, V6 edition | WS2812B-V6: Data Transfer Time | p. 4 | `Variant::Ws2812bV5`, `Timing::period_min_ns` | [Timing](timing.md) |
 | WS2812C windows | WS2812C: Data Transfer Time | p. 3 | `Variant::Ws2812c` | [Timing](timing.md) |

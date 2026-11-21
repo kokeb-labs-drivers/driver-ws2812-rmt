@@ -166,5 +166,39 @@
       "inc/ws2812_rmt.hpp:public calls",
       "inc/ws2812_rmt_gpio_interface.hpp:GpioInterface"
     ]
+  },
+  "single-wire-chain": {
+    "title": "Pixels in a chain",
+    "alt": "Chain of WS2812B pixels on one data wire: the MCU drives DIN of the first pixel, each DOUT drives the next DIN, and every pixel shares the VDD and VSS supply rails.",
+    "description": "The MCU on top drives its data pin into DIN of pixel 1; its DOUT feeds the next pixel and so on to pixel N, whose DOUT is left open. VDD and VSS are rails every pixel shares, as in the typical application circuit; the MCU joins VSS only.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/single-wire-chain.topology.yml",
+    "sources": [
+      "docs/model/single-wire-chain.topology.yml"
+    ],
+    "kind": "topology",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
+  },
+  "single-wire-timing": {
+    "title": "One wire, two codes and the reset",
+    "alt": "Single-wire timing of the WS2812B V5: a 0 code is a short high and a long low, a 1 code a long high and a long low, and a low longer than the reset time latches the frame before the next one starts.",
+    "description": "The lane is DIN, left to right in time. The line idles low; a 0 code is high for T0H then low for T0L, a 1 code high for T1H then low for T1L, and the remaining bits of the frame are left out. After the last bit DIN stays low for longer than RES, the pixels latch their colours and the next high starts a new frame.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/single-wire-timing.timing.yml",
+    "sources": [
+      "docs/model/single-wire-timing.timing.yml"
+    ],
+    "kind": "timing",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": true,
+    "font": ""
   }
 }

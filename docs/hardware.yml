@@ -20,6 +20,9 @@ refs:
   levels: {doc: b-v5, section: "Electrical Characteristics", page: 2}
   timing: {doc: b-v5, section: "Data Transfer Time", page: 3}
   cascade: {doc: b-v5, section: "Data Transmission Method", page: 4}
+  cascmethod: {doc: b-v5, section: "Cascade Method", page: 3}
+  appv5: {doc: b-v5, section: "Typical Application Circuit", page: 4}
+  switching: {doc: b-v5, section: "Switching Characteristics", page: 3}
   blocks: {doc: b-v5, section: "Data Transmission Method", page: 4}
   app: {doc: b-af, section: "Typical application circuit", page: 5}
   outline: {doc: b-v5, section: "Mechanical Dimensions", page: 2}
@@ -136,7 +139,7 @@ pins:
      hook: power, ref: pinout}
   - {number: 2, name: DOUT, type: digital-out, domain: VDD,
      function: "Reshaped data to the next pixel (300 ns propagation at most)", unused: "Leave open on the last pixel",
-     ref: cascade}
+     ref: switching}
   - {number: 3, name: VSS, type: ground, domain: GND, function: "Ground, data and power", ref: pinout}
   - {number: 4, name: DIN, type: digital-in, domain: VDD,
      function: "Data in: the timed bit stream; high level at least 2.7 V (V5.0) or 0.63 x VDD (later sheets): \

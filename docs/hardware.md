@@ -12,6 +12,8 @@ same four signals; the pin order and the levels differ per part.
     - Supply range and logical input voltage: Worldsemi WS2812B-V5 V5.0, Absolute Maximum Ratings, p. 2
     - Pins and package: four pin 5050: Worldsemi WS2812B-V5 V5.0, PIN Configuration, p. 2
     - Propagation delay DIN to DOUT: Worldsemi WS2812B-V5 V5.0, Switching Characteristics, p. 3
+    - Typical application circuit of the V5: shared VDD and GND: Worldsemi WS2812B-V5 V5.0, Typical Application Circuit,
+      p. 4
     - Input level 0.63 x VDD (later V5 family sheets): Worldsemi WS2812B-V5 V6.1, Electrical Characteristics, p. 3
     - Input levels of the SK6812: Opsco SK6812RGBW Rev. 01, Electrical Characteristics, p. 4
 
@@ -51,7 +53,7 @@ strip. The driver does not depend on the pin order: DIN is whatever pin your por
 | Pin | Name | Type (domain) | Function | Driver hook | If unused | Datasheet |
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | `VDD` | power (VDD) | Supply, 3.7 V to 5.3 V; switched through the optional hook | `GpioSet(CtrlPin::Power)` | - | PIN Configuration, p. 2 |
-| 2 | `DOUT` | digital out (VDD) | Reshaped data to the next pixel (300 ns propagation at most) | - | Leave open on the last pixel | Data Transmission Method, p. 4 |
+| 2 | `DOUT` | digital out (VDD) | Reshaped data to the next pixel (300 ns propagation at most) | - | Leave open on the last pixel | Switching Characteristics, p. 3 |
 | 3 | `VSS` | ground | Ground, data and power | - | - | PIN Configuration, p. 2 |
 | 4 | `DIN` | digital in (VDD) | Data in: the timed bit stream; high level at least 2.7 V (V5.0) or 0.63 x VDD (later sheets): see Input level | `Transmit()` | - | Electrical Characteristics, p. 2 |
 
